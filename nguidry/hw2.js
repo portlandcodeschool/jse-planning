@@ -46,37 +46,39 @@ else {
 
 //2d
 
-//3 - stuck on addGift function 
+//3 
 
-var dayNum = ["first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth", "eleventh", "twelfth"];
+var dayNum = ["first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth", "eleventh", "twelfth"],
+    giftList = ["A partridge in a pear tree", "Two turtle doves", "Three french hens", "Four calling birds", "Five golden rings", "Six geese a laying", "Seven swans a swimming", "Eight maids a milking", "Nine ladies dancing", "Ten lords a leaping", "Eleven pipers piping", "Twelve drummers drumming"],
+    giftsRecd = "",
+    i,
+    lyrics = "";
 
-var giftList = ["a partridge in a pear tree", "two turtle doves", "three french hens", "four calling birds", "five golden rings", "six geese a laying", "seven swans a swimming", "eight maids a milking", "nine ladies dancing", "ten lords a leaping", "eleven pipers piping", "twelve drummers drumming"];
-
-var giftsRecd = "";
-
-var addGift = function() {
-    
-    for (var x = 1; x > -1; x--) {
-		giftsRecd += giftList[x] + ",\n";
-	}
-   return giftsRecd;
+function addGift() {
+       giftsRecd = "";
+       if (i === 0) {
+           giftsRecd += giftList[i] + "\n";
+       } 
+       else {
+           for (var x = i; x > 0; x--) {
+                giftsRecd += giftList[x] + ",\n";
+            }
+           giftsRecd += "And " + giftList[0].toLowerCase() + ".\n";
+       }
 }
 
-addGift();
-
-var singCarol = function() {
-	var lyrics; 
-    for (var i = 0; i < dayNum.length; i++) {
-        addGift();
+function singCarol() {
+    for (i = 0; i < dayNum.length; i++) {
         lyrics += "On the " + dayNum[i] + " day of Christmas\nMy true love gave to me:\n"; 
-	}
+        addGift();
+        lyrics += giftsRecd + "\n";
+    }
 	return lyrics;
 }
 
-
 singCarol(); 
 
-//4a
+//4a -- incomplete
 
 /* Write a function `and2(a,b)` which tries to simulate the && operator: it should always return the same result as 
 `(a && b)` for any values of _a_ and _b_.  (For example, `and2((0>1),true)` should return _false_.)  But you can't use && itself 
