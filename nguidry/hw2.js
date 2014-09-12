@@ -28,23 +28,21 @@ var printFraction = function(n,d) {
 
 //2a
 
-//2b
-var x,
-	y, 
-	xIsFalse = (x? false : true);
-if (xIsFalse) {
-   y = false;
-}
-else {
-   y = x;
- }
+Math.round(n);
 
- y || x;
-}
+//2b 
+
+x || y;
 
 //2c
 
-//2d
+for (var i; i > 0; i--) {
+    console.log(i);
+}
+
+//2d -- ????
+
+a && b;
 
 //3 
 
@@ -84,12 +82,13 @@ singCarol();
 `(a && b)` for any values of _a_ and _b_.  (For example, `and2((0>1),true)` should return _false_.)  But you can't use && itself 
 within your function! */
 
-var and2 = function(a,b) {
-	if (a === true) {
-        return b;
+function and2(a,b) {
+    if (a) {
+       b;
     } else {
-        return a;};
-};
+       a;
+    }
+}
 
 //4b
 

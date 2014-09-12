@@ -49,11 +49,11 @@ if ((n - Math.floor(n)) >= .5) {
 
 **b)**
 ```
-var y, xIsFalse = (x? false : true);
-if (xIsFalse)
-   y = false;
-else
-   y = x;
+  var y, xIsFalse = (x? false : true);
+  if (xIsFalse)
+     y = false;
+  else
+     y = x;
 ```
 
 
