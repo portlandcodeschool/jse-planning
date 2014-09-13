@@ -1,18 +1,39 @@
 // Error-detecting version
 
-function rank(card) {
+function rank(card) { 
+	if (card < 0 || card > 51 || typeof card !== "number" || card % 1 !== 0) {return NaN};
+    return Math.floor((card/4) + 1);
 }
 
-function suit(card) {
+function suit(card) { 
+	if (card < 0 || card > 51 || typeof card !== "number" || card % 1 !== 0) {return NaN};
+	return (card % 4) + 1;
 }
 
-function cardID(rank,suit) {
+function color(card) { 
+    if (card < 0 || card > 51 || typeof card !== "number" || card % 1 !== 0) {return NaN};
+    if (2 % suit(card) === 0) {
+		return "red";
+	} else {
+		return "black";
+	  }
 }
 
-function color(card) {
+function name(card) { // --> string
+	if (card < 0 || card > 51 || typeof card !== "number" || card % 1 !== 0) {return NaN};
+	var faces = ["Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"];
+	var suits = ["Hearts", "Diamonds", "Spades", "Clubs"];
+	var cardFace = rank(card) - 1;
+	var cardSuit = suit(card) - 1;
+
+	return faces[cardFace] + " of " + suits[cardSuit];
+
 }
 
-function name(card) {
+function cardID(rank,suit) { // --> 0..51
+	if (rank < 1 || rank > 13 || typeof rank !== "number" || rank % 1 !== 0) {return NaN};
+	if (suit < 1 || suit > 4 || typeof suit !== "number" || suit % 1 !== 0) {return NaN};
+	return ((rank - 1) * 4) + (suit - 1);
 }
 
 
@@ -64,4 +85,16 @@ assert(isNaN(name(false)),   "Test 43 failed");
 assert(isNaN(name(-1)),      "Test 44 failed");
 assert(isNaN(name(52)),      "Test 45 failed");
 assert(isNaN(name(NaN)),     "Test 46 failed");
+
+// My tests - exercise c
+
+assert(cardID(12,2)===45,   "Test failed");
+assert(color(50)==='black',   "Test failed");
+assert(name(35)==='Nine of Clubs', "Test failed");
+
+assert(isNaN(cardID(15,3)), "Test failed");
+assert(isNaN(color(4)),"Test failed");
+assert(isNaN(name(-2)), "Test failed");
+
+
 

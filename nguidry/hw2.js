@@ -40,7 +40,7 @@ for (var i; i > 0; i--) {
     console.log(i);
 }
 
-//2d -- ????
+//2d
 
 a && b;
 
@@ -76,33 +76,54 @@ function singCarol() {
 
 singCarol(); 
 
-//4a -- incomplete
-
-/* Write a function `and2(a,b)` which tries to simulate the && operator: it should always return the same result as 
-`(a && b)` for any values of _a_ and _b_.  (For example, `and2((0>1),true)` should return _false_.)  But you can't use && itself 
-within your function! */
+//4a
 
 function and2(a,b) {
     if (a) {
-       b;
+       return b;
     } else {
-       a;
+       return a;
     }
 }
 
-//4b
+//4b 
+
+function and3(a,b,c) {
+	if (a == true) {
+		if (b == true) {
+			if (c == true){return true;} 
+			   else {return false;}
+        }
+        else {return false;}
+    }
+    else {return false;}
+}    
 
 //4c
 
+var values = [true, true, true, true, false, true];
+
+var n = values.length;
+
+function andN(n, values) {
+	for (n; n > 0; n--) {
+        if (values[n] == false) {return false;} 
+  	}
+    return true;
+}
+
+andN(n, values);
+
 //4d
+/*
+The andN function evaluates first for falseyness, and the && operator returns for truthiness. 
+The andN functions that way in order to return the result correctly. 
 
-//5a
-
-//5b
-
-//5c
-
-
+For example, inserting NaN into the values array for the andN function will return true, 
+because the loop is checking for anything that is specifically false, and NaN is not specifically false. However, running 
+NaN against a true function with the && operator will always return "NaN", since NaN in a simple expression will always 
+results in a NaN return.
+*/
 
 
 
