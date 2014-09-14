@@ -116,12 +116,14 @@ andN(n, values);
 
 //4d
 /*
-The andN function evaluates first for falseyness, and the && operator returns for truthiness. 
-The andN functions that way in order to return the result correctly. 
+The andN function evaluates first for falseyness, and the && operator evaluates for truthiness. 
+The andN function has to evaluate for falseyness so it knows when to stop and trigger the return, 
+in order to return the result correctly. 
 
-For example, inserting NaN into the values array for the andN function will return true, 
-because the loop is checking for anything that is specifically false, and NaN is not specifically false. However, running 
-NaN against a true function with the && operator will always return "NaN", since NaN in a simple expression will always 
+Some types will not be evaluated "correctly" by the andN function. For example, inserting NaN into 
+the values array for the andN function will return true, because the loop is checking for anything 
+that is specifically false, and NaN is not specifically false. However, running NaN against a true 
+function with the && operator will always return "NaN", since NaN in a simple expression will always 
 results in a NaN return.
 */
 
