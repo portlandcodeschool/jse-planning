@@ -144,7 +144,7 @@ Hint #1: Notice the patterns as the card id ranges from 0 to 51:
 
 - rank(id) increases slowly, like a quotient;
 - suit(id) cycles quickly through 1-4, (almost) like a remainder;
-- color(id) alternates R,B,R,B...
+- color(id) alternates <s>R,B,R,B</s> R,R,B,B,R,R,B,B ... _(corrected, sorry!)_
 
 Hint #2: Generate your card names by combining a rank word from one array and suit word from another.
 
