@@ -40,7 +40,7 @@ console.log(array.join(array.push(array.push('a')))); // What will this print?
 
 ---
 
-**2)  A Cards Toolkit! **  _[Easy, 1 hr]_
+**2)  A Cards Toolkit!**  _[Easy, 1 hr]_
 
 Revisit your playing card functions from homework 2, problem 5b.  Repackage them in a Toolkit pattern, as methods of a single master object.  You may assign that object to any variable you like, but that variable should not appear in the definitions of your methods (use `this` instead).  You'll need to change the form of your method definitions and their calls to other methods, but their logic and most of their code will remain the same.
 
@@ -121,11 +121,11 @@ _Hint:_ the `people` object should contain an index of all people, linking each 
 
 Here is a diagram showing the data structure after `people` is fully initialized but before any method calls:
 
-![](social-network1.svg)
+![image visible when viewing locally](social-network1.svg)
 
 Here is the data structure just after the first method call `people.meet('Dan','Ben')`:
 
-![](social-network2.svg)
+![image visible when viewing locally](social-network2.svg)
 
 **b)** _[Difficult, 1.5 hrs]_
 
