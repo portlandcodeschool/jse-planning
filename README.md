@@ -121,11 +121,11 @@ _Hint:_ the `people` object should contain an index of all people, linking each 
 
 Here is a diagram showing the data structure after `people` is fully initialized but before any method calls:
 
-![image visible when viewing locally](social-network1.svg)
+![](http://portlandcodeschool.github.io/jse-fall14-3/social-network1.svg)
 
 Here is the data structure just after the first method call `people.meet('Dan','Ben')`:
 
-![image visible when viewing locally](social-network2.svg)
+![](http://portlandcodeschool.github.io/jse-fall14-3/social-network2.svg)
 
 **b)** _[Difficult, 1.5 hrs]_
 
