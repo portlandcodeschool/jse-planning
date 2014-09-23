@@ -9,7 +9,7 @@ var people = {};  //master object: stores both data and methods
 
 people.index = {}; //data object: stores known names and corresponding objects
 
-// ---- helper functions ----
+// ---- Helper functions ----
 
 // Retrieve the object for a particular person, which might be null
 people.findPerson = function(name) {
@@ -24,7 +24,7 @@ people.ensurePerson = function(name) {
         ( this.index[name] = {name:name, friends:{}} ); //if not found, make person
 }
 
-// ---- functions needed for part a) ----
+// ---- Functions needed for part a) ----
 people.meet = function(nameA,nameB) {
     if (nameA===nameB) return; //don't meet oneself
 
