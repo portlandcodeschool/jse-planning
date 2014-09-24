@@ -99,7 +99,7 @@ function unionWith(union,objB) { //modifies union obj; make sure it's a copy!
     }
 }
 
-//======== Testing:
+//======== Sample Testing ========
 assert(people.meet("Al","Al") === undefined,    'Test 1 failed');
 assert(people.meet("Al","Ben") === 1,           'Test 2 failed');
 assert(people.meet("Al","Clarissa") === 1,      'Test 3 failed');
