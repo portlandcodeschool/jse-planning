@@ -52,7 +52,7 @@ deckOfCards.sort(/* something different here */);
 
 //-------
 // Part c): build another deque instance:
-var someNames = /* make array of student/TA names here */;
+var someNames = /* make array of names here */;
 var deckOfNames = makeDeque(someNames);
 deckOfNames.sort(/* something here */);
 
