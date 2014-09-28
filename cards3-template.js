@@ -76,8 +76,8 @@ assert(card51.name()==='King of Clubs',  "Test 13 failed");
 // Test makeCard.isCard:
 assert(makeCard.isCard(card0),  "Test 21 failed")
 assert(makeCard.isCard(card51), "Test 22 failed")
-assert(!makeCard.isCard(0)),    "Test 23 failed")
-assert(!makeCard.isCard({})),   "Test 24 failed")
+assert(!makeCard.isCard(0),    "Test 23 failed")
+assert(!makeCard.isCard({}),   "Test 24 failed")
 
 
 // Test card-making results:
