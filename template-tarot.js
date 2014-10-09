@@ -34,7 +34,7 @@ var TarotCard = (function(Super){ //<-- Superclass is parameter
 
 	// Replace default prototype so that subclass inherits from superclass
 	var proto = (SubCtor.prototype = new Super());
-	proto.constructor = Ctor;
+	proto.constructor = SubCtor;
 
 	// Override one superclass instance method:
 	proto.color = undefined; //Tarot cards have no color; disable inherited method
