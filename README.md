@@ -102,7 +102,9 @@ The two classes should be able to co-exist and pass all of the tests in the temp
 Write a game of Memory, in which some set of cards are arranged face down on a board and a player turns them over looking for pairs.
 In this version, your board will be a single row of cards (later you'll convert it to a 2D grid) which are identified by a single position number.
 
-Use a constructor and prototype, packaged in an IIFE, to implement a game board.
+_[UPDATE: You can write the constructor using either public data accessible to a prototype, or private data in a closure with dedicated methods.  But you'll find in difficult to combine them.  Pick one strategy or the other.]_
+
+Use a constructor ~~and prototype~~ _(optional)_, packaged in an IIFE, to implement a game board.
 Your _MemoryBoard_ constructor should receive 3 arguments:
 
 1. an array of values, each representing a game "card" (not necessarily a playing card).  You should have an even number of values which can be matched in pairs.
