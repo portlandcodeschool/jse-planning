@@ -17,7 +17,7 @@ The _GUI_ includes both a _.js_ and a _.css_ file which work together and share 
 The body of your application will be a single HTML file which imports the modules and ties them together in a [main file](template/memory-main.js).
 
 The following steps will help guide you through the development of the GUI, but you don't need to provide answers along the way.
-You may develop your GUI by any process you like, as long as it has the public interface outlined in the [template file](template/memory-GUI.js).
+You may develop your GUI by any process you like, as long as it has the public interface outlined in the [template file](template/memory-gui.js).
 
 ---
 **a)**  In the GUI's IIFE, write a constructor _MemoryGUI_.  The first parameter of the constructor should be the size of the game (the number of cards on the initial board).  Assume the cards will be arranged in grid approximately square.
