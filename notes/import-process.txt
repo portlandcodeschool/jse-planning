@@ -1,0 +1,19 @@
+git remote add win15-1  git@github.com:portlandcodeschool/jse-win15-1.git
+OR...          fall14-2 git@github.com:portlandcodeschool/jse-fall14-2.git
+
+
+git fetch win15-1
+
+git checkout -b wk1 win15-1/master
+
+git mv README.md homework/week1/
+git mv LICENSE homework/week1/
+git mv objectives.md homework/week1/
+
+git commit -m 'moved to homework/week1'
+
+git checkout master
+git merge wk1
+
+git commit -m 'Imported week1'
+
