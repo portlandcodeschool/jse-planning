@@ -6,6 +6,7 @@ git fetch win15-1
 
 git checkout -b wk1 win15-1/master
 
+mkdir homework/week1
 git mv README.md homework/week1/
 git mv LICENSE homework/week1/
 git mv objectives.md homework/week1/
