@@ -123,4 +123,4 @@ OR
 var x = (!a*1) + (!b*1);
 ```
 A brief explanation of the last solution:
-whatever value _a_ starts with, `!a` will be the opposite boolean, and that will be auto-converted to either 0 or 1 by the numeric operation `(!a*1)`.  An initially falsish _a_ will produce 1 and truish _a_ will produce 0, likewise with _b_, so the sum _x_ is the number of falsish inputs.
+whatever value _a_ starts with, `!a` will be the opposite boolean, and that will be coerced (auto-converted) to either 0 or 1 by the numeric operation `(!a*1)`.  An initially falsish _a_ will produce 1 and truish _a_ will produce 0, likewise with _b_, so the sum _x_ is the number of falsish inputs.

@@ -38,30 +38,31 @@ assert(name(51)==='King of Clubs',  "Test 13 failed");
 
 // Extra testing!
 // These tests check that invalid arguments produce invalid output.
-assert(isNaN(rank(52)),  "Test 21 failed");
-assert(isNaN(rank("0")), "Test 22 failed");
-assert(isNaN(rank(-1)),  "Test 23 failed");
-assert(isNaN(rank(2.5)), "Test 24 failed");
-assert(isNaN(rank(undefined)),"Test 25 failed");
+// I.e. "garbage in guarantees garbage out".
+assert(Number.isNaN(rank(52)),  "Test 21 failed");
+assert(Number.isNaN(rank("0")), "Test 22 failed");
+assert(Number.isNaN(rank(-1)),  "Test 23 failed");
+assert(Number.isNaN(rank(2.5)), "Test 24 failed");
+assert(Number.isNaN(rank(undefined)),"Test 25 failed");
 
-assert(isNaN(suit(52)),   "Test 26 failed");
-assert(isNaN(suit(false)),"Test 27 failed");
-assert(isNaN(suit(true)), "Test 28 failed");
-assert(isNaN(suit(-1)),   "Test 29 failed");
-assert(isNaN(suit(3.14)), "Test 30 failed");
+assert(Number.isNaN(suit(52)),   "Test 26 failed");
+assert(Number.isNaN(suit(false)),"Test 27 failed");
+assert(Number.isNaN(suit(true)), "Test 28 failed");
+assert(Number.isNaN(suit(-1)),   "Test 29 failed");
+assert(Number.isNaN(suit(3.14)), "Test 30 failed");
 
-assert(isNaN(cardID(0,1)),   "Test 31 failed");
-assert(isNaN(cardID("1",1)), "Test 32 failed");
-assert(isNaN(cardID(1,5)),   "Test 33 failed");
-assert(isNaN(cardID(14,1)),  "Test 34 failed");
-assert(isNaN(cardID(-1,-1)), "Test 35 failed");
-assert(isNaN(cardID(0.5,1)), "Test 36 failed");
-assert(isNaN(cardID(1,NaN)), "Test 37 failed");
+assert(Number.isNaN(cardID(0,1)),   "Test 31 failed");
+assert(Number.isNaN(cardID("1",1)), "Test 32 failed");
+assert(Number.isNaN(cardID(1,5)),   "Test 33 failed");
+assert(Number.isNaN(cardID(14,1)),  "Test 34 failed");
+assert(Number.isNaN(cardID(-1,-1)), "Test 35 failed");
+assert(Number.isNaN(cardID(0.5,1)), "Test 36 failed");
+assert(Number.isNaN(cardID(1,NaN)), "Test 37 failed");
 
-assert(isNaN(color('apple')),"Test 41 failed");
-assert(isNaN(color(true)),   "Test 42 failed");
-assert(isNaN(name(false)),   "Test 43 failed");
-assert(isNaN(name(-1)),      "Test 44 failed");
-assert(isNaN(name(52)),      "Test 45 failed");
-assert(isNaN(name(NaN)),     "Test 46 failed");
+assert(Number.isNaN(color('apple')),"Test 41 failed");
+assert(Number.isNaN(color(true)),   "Test 42 failed");
+assert(Number.isNaN(name(false)),   "Test 43 failed");
+assert(Number.isNaN(name(-1)),      "Test 44 failed");
+assert(Number.isNaN(name(52)),      "Test 45 failed");
+assert(Number.isNaN(name(NaN)),     "Test 46 failed");
 

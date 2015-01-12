@@ -1,22 +1,27 @@
 // Part A:
-function printFraction(n,d) {
+function fractionString(n,d) {
   var remainder = n%d;
-  var wholes = (n - remainder)/d;
+  var wholes = (n - remainder)/d; //always integer
   return wholes + ' ' + remainder + '/' + d;
 }
 
 //Part B:
-function printFraction(n.d) {
-  if (!n) // if numerator is zero, return early with just 0
+function fractionString(n,d) {
+  if (!n) {// if numerator is zero, return early with just 0
   	return "0";
+  }
   //otherwise:
   var remainder = n%d;
   var wholes = (n - remainder)/d;
-  var output = '';
+  var output = ''; //initially blank output, augmented below
+
+  // These conditions are independent; either or both may be true:
   if (wholes) // if non-zero whole units
-    output += (wholes + ' ');  // include it
+    output += (wholes + ' ');  // include it in output
+
   if (remainder) // if non-zero remainer,
-    output += (remainder + '/' + d); // include it
+    output += (remainder + '/' + d); // include it too
+  
   return output;
 }
 
