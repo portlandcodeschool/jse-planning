@@ -20,7 +20,7 @@ function and2(a,b) {
 ```
 
 **b)**
-Three equivalent solutions:
+Four equivalent solutions:
 ```
 function and3(a,b,c) {
 	if (a) {
@@ -47,7 +47,9 @@ function and3(a,b,c) {
 }
 ```
 
-
+function and3(a,b,c) {
+  return (and2(and2(a,b),and2(b,c)))
+}
 
 **c)**
 ```
@@ -66,7 +68,11 @@ function andN(n,values) {
 
 **d)**
 
-The operators && and || are "short-circuiting", meaning that they only evaluate their operands as needed, left to right.  But a function call evaluates all its arguments before the function begins.  Therefore the two forms may leave their environment in a different state.
+The operators && and || are "short-circuiting", meaning that they only evaluate their operands as needed, left to right.  But a function call evaluates all its arguments before the function begins.  You can test this simply by using an undeclared variable in && or || and comparing that with the result from and2:
+
+`false && undeclaredVar` vs `and2(false, undeclaredVar)`
+
+Therefore the two forms may leave their environment in a different state.
 For example:
 
 `and3(x=0,x=1,x=2)` returns 0, just like `and3(0,1,2)`, but it leaves x equal to 2.
