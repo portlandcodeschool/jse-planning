@@ -1,11 +1,5 @@
 
-### Homework #1
-(Due Monday 9/8)
-
-You need to turn in this homework by cloning this repo, making a new branch with your solutions, pushing to github, and issuing a pull request.
-For details, follow the instructions [here](http://portlandcodeschool.github.io/jse/2014/05/12/command-line-and-git-slides/#/14).
-
----
+### Homework #1 Solutions
 
 **1)** (_Difficulty: mixed_)
 Before testing these expressions in the console, predict what their output will be.  If the output depends on x, identify the conditions when the expression will output true.  Assume the cases are independent, and x is reset to an unknown value before each.
@@ -14,63 +8,119 @@ Some of these are tricky!  Don't trust your first instinct.
 
 
 **a)** `"1" == 1`
-> true
+<pre>
+true.   The equality operator coerces string "1" to numeric 1 and finds 1==1.
+</pre>
 
 **b)** `"1" === 1`
-> false
+<pre>
+false.  The identity operator never coerces types; since types here differ, the values are not identical.
+</pre>
 
 **c)** `x == 'x'`
-> false UNLESS x is literally string 'x'
+<pre>
+false UNLESS x is literally string 'x'
+</pre>
 
 **d)** `x == (x+'')`
-> true UNLESS x is NaN, true, or false
+<pre> true UNLESS x is NaN, undefined, true, or false.  
+If NaN:		NaN == (NaN + '')
+			NaN == 'NaN'
+			NaN == NaN  (which JS defines as false)
+If undefined:
+			undefined == (undefined + '')
+			undefined == 'undefined'  (which JS defines as false)
+If true:	true == (true+'')
+			true == 'true'
+			1 == 'true'
+			1 == NaN
+If false:	false == (false+'')
+			false == 'false'
+			0 == 'false'
+			0 == NaN
+</pre>
 
 **e)** `'' == ' '`
-> false
+<pre>
+false.  Empty string '' is unequal to all non-empty strings.
+</pre>
 
 **f)** `x = true`
-> true
+<pre>
+true.  Whatever x was before, it gets reassigned to true, and the expression returns true.
+</pre>
 
 **g)** `var x; x == 'undefined'`
-> true UNLESS x was declared earlier with a value
+<pre>
+false UNLESS x was declared earlier to be the string 'undefined'.  The first declaration `var x` sets x equal to undefined (special value), not string 'undefined'.  Subsequent declarations `var x` do nothing.
+</pre>
 
 **h)** `'9'<'10'`
-> false
+<pre>
+false.  Strings are compared alphabetically, and '9'>'1*' for any *.
+</pre>
 
 **i)** `typeof x + 1 === "number"`
-> false
+<pre>
+false.  This is really:
+	(typeof x)+1 === "number"
+	"*****"+1 === "number"
+	"*****1" === "number"
+</pre>
 
 **j)** `typeof x % 2 === "number"`
-> false
+<pre>
+false.  This is really:
+	(typeof x) % 2 === "number"
+	"*****" % 2 === "number"
+	NaN === "number"
+</pre>
 
 **k)** `typeof (x % 2) === "number"`
-> true
+<pre> true.  The % operator always yields a number (possibly NaN).
+</pre>
 
 **l)** `x++ == ++x`
-> false
+<pre> false.  If x can be incremented (i.e. is a number or numeric string), the value on the right is 2 greater than that on the left.  If x can't be incremented (e.g. is a non-numeric string like 'apple'), the expression is `NaN == NaN`.
+</pre>
 
 **m)** `++x == x++`
-> true UNLESS x is non-numeric string
+<pre> true UNLESS x is non-numeric string.  If non-numeric string (e.g. 'apple'), this becomes `NaN == NaN`.
+</pre>
 
 **n)** `"1"+x == 1+x`
-> true when x is any string
+<pre> true when x is any string:
+	'1'+x == 1+x
+	'1'+'****' == 1+x
+	'1****' == 1+x
+	'1****' == '1****'
+</pre>
 
 **o)** `"0"+1 == 1`
-> true
+<pre> true:
+	'0'+1 == 1
+	'0'+'1' == 1
+	'01' == 1
+	1 == 1
+</pre>
 
 **p)** `(typeof (x+1))===(typeof x)`	
-> true if x is number or string
+<pre> true if x is a number or string.  If number, then both (x+1) and x are type 'number'; if string, then both are type 'string'.  But if x is type 'boolean' then (x+1) is type 'number' (since true+1 is 2 and false+1 is 1).
+</pre>
 
 **q)** `(x*1 == x) || ((typeof x) != "number")`
-> true UNLESS x is NaN
+<pre> true UNLESS x is NaN.  For non-numbers, the right-hand side of the || is true, and for numbers except NaN, the left side is true.  For NaN, both sides are false, so the whole thing is false.
+</pre>
 
 **r)** `(x=(typeof (x+(typeof x))))==x`
-> true
-
+<pre> true.  For any x, this becomes:
+	(x=(typeof (x+'*****')))==x
+	(x=(typeof 'x*****'))==x
+	(x='string') == x
+	'string' == 'string'
+</pre>
 
 ---
-
-All of the following can be solved with ordinary expressions and global variables with primitive values.  You don't need functions, loops, conditionals, or other topics beyond our first class.
 
  **2)** (_Difficulty: easy_)
 
@@ -112,35 +162,41 @@ Suppose you're encoding geometric shapes in a Cartesian coordinate system, and y
 **a)**
 Write an expression for the rectangle's area.
 ```
-(r-l)*(t-b)
+var area = (r-l)*(t-b)
 ```
 
 **b)**
 Write an expression which is true if the rectangle is taller than it is wide, and false otherwise.
 ```
-(t-b)>(r-l)
+var isTall = (t-b)>(r-l);
 ```
 
 **c)**
+Write an expression for the circumference of the biggest circle which can fit inside the rectangle.
 ```
 var smallerDiam;
-if ((t-b)>(r-l)) {
+var isTall = (t-b)>(r-l);
+
+if (isTall) {
 	smallerDiam = r-l;
 } else {
 	smallerDiam = t-b;
 //OR:
-var smallerDiam = ((t-b)>(r-l))? (r-l): (t-b);
+var smallerDiam = isTall? (r-l): (t-b);
 //OR:
-var tall = (t-b)>(r-l);
-var smallerDiam = (r-l)*tall + (t-b)*(!tall);
+var smallerDiam = (r-l)*isTall + (t-b)*(!isTall);
 
-var circumf = Math.PI * smallerDiam;
+var circumference = smallerDiam * Math.PI;
+```
 
 **d)**
+Write an expression for the area of the smallest circle which completely encloses (i.e. circumscribes) the rectangle.
+```
 var w = r-l,
 	h = t-b,
-	rSqrd = h*h+w*w,
-	area = Math.PI * rSqrd;
+	rSquared = h*h + w*w,
+	area = Math.PI * rSquared;
+```
 
 **e)**
 Imagine subdividing your rectangle into 3 equal rows and 3 equal columns, which would create 9 smaller rectangles, identical in shape but varying by position.
@@ -158,7 +214,7 @@ Solution using widths:
 ```
 var miniWidth = (r-l)/3;
 var miniHeight = (t-b)/3;
-var lc = l + miniWidth; // == 3*l/3 + (r-l)/3 == (3*l+r-l)/3 == (2*l+r)/3
+var lc = l + miniWidth; // == l*3/3 + (r-l)/3 == (3*l+r-l)/3 == (2*l+r)/3, as above
 var rc = r - miniWidth;
 var bc = b + miniHeight;
 var tc = t - miniHeight;
@@ -168,26 +224,34 @@ var tc = t - miniHeight;
 **4)** (_Difficulty: easyish_)
 
 **a)**
+Given a particular R and C, find the corresponding N.  That is, write an expression for variable N containing variables R and C.
 ```
-n = 8*r+c;
+n = 8*r + c;
 ```
 
 **b)**
+Given N, find R.  Write an expression for R which contains N.
 ```
 r = Math.floor(n/8);
 ```
 
 **c)**
+Given N, find C.  Write an expression for C which contains N.
 ```
 c = n%8;
 ```
 
 **d)**
 ```
-var color = (r%2 == c%2)? 'black': 'white';
-//OR... ?
+var color = (r%2 == c%2) ? 'black' : 'white';
+//OR
+var color = ((r+c)%2 == 0) ? 'black' : 'white';
+//OR
+var color = ((r+c+1)%2) ? 'black' : 'white';
+//OR
+var color = ((r+n)%2 == 0) ? 'black' : 'white';
+//OR many others...
 ```
-
 ---
 
 **5)** (_Difficulty: moderate_)
@@ -201,6 +265,6 @@ Write an expression for a string expressing the proper form of an improper fract
 ```
 var remainder = n % d;
 var evenlyDivisible = n - remainder;
-var wholes = evenlyDivisible / d;
+var wholes = evenlyDivisible / d;       //always an integer!
 var result = wholes + ' ' + remainder + '/' + d;
 ```
