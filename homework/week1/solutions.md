@@ -81,7 +81,7 @@ false.  This is really:
 </pre>
 
 **l)** `x++ == ++x`
-<pre> false.  If x can be incremented (i.e. is a number or numeric string), the value on the right is 2 greater than that on the left.  If x can't be incremented (e.g. is a non-numeric string like 'apple'), the expression is `NaN == NaN`.
+<pre> false UNLESS x is +-Infinity.  If x can be incremented (i.e. is a number or numeric string), the value on the right is 2 greater than that on the left (which makes them equal only for +-Infinity).  If x can't be incremented (e.g. is a non-numeric string like 'apple'), the expression is `NaN == NaN`.
 </pre>
 
 **m)** `++x == x++`
