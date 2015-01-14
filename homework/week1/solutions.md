@@ -265,6 +265,13 @@ Write an expression for a string expressing the proper form of an improper fract
 (_Hint: you'll need the modulo operator _%_, and you'll probably want to create a couple of extra variables._)
 ```
 var remainder = n % d;
+var wholes = Math.floor(n/d);
+var result = wholes + ' ' + remainder + '/' + d;
+```
+
+You can also solve it without Math.floor():
+```
+var remainder = n % d;
 var evenlyDivisible = n - remainder;
 var wholes = evenlyDivisible / d;       //always an integer!
 var result = wholes + ' ' + remainder + '/' + d;
