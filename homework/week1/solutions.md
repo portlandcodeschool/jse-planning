@@ -194,8 +194,9 @@ Write an expression for the area of the smallest circle which completely enclose
 ```
 var w = r-l,
 	h = t-b,
-	rSquared = h*h + w*w,
-	area = Math.PI * rSquared;
+	diamSquared = h*h + w*w,
+	radiusSquared = diamSquared/4,
+	area = Math.PI * radiusSquared;
 ```
 
 **e)**
