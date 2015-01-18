@@ -1,6 +1,5 @@
-**a)**
-Three equivalent solutions:
-```
+// a)  Some equivalent solutions:
+
 function and2(a,b) {
 	if (a) {
 		return b;
@@ -9,7 +8,7 @@ function and2(a,b) {
 	}
 }
 
-function and2(a.b) {
+function and2(a,b) {
 	if (a) return b;
 	return a;
 }
@@ -17,11 +16,9 @@ function and2(a.b) {
 function and2(a,b) {
 	return (a? b: a);  //ternary conditional operator
 }
-```
 
-**b)**
-Four equivalent solutions:
-```
+// b) Some equivalent solutions:
+
 function and3(a,b,c) {
 	if (a) {
 		if (b) {
@@ -45,15 +42,19 @@ function and3(a,b,c) {
 function and3(a,b,c) {
   return a? (b? c: b): a;   //nested ternary conditional operator
 }
-```
 
 function and3(a,b,c) {
   return (and2(and2(a,b),and2(b,c)))
 }
 
-**c)**
-```
-function andN(n,values) {
+function and3(a,b,c) {
+  return (and2(and2(a,b),c))
+}
+
+// c)
+
+function andN(values) {
+	var n = values.length;
   	for (var i=0; i<n; i++) {
     	if (!values[i]) {
 			return values[i]; //return first falsish val
@@ -64,9 +65,9 @@ function andN(n,values) {
     }
     return true; // only when n is 0;
 }
-```
 
-**d)**
+/*
+d)
 
 The operators && and || are "short-circuiting", meaning that they only evaluate their operands as needed, left to right.  But a function call evaluates all its arguments before the function begins.  You can test this simply by using an undeclared variable in && or || and comparing that with the result from and2:
 
@@ -89,3 +90,11 @@ will only delete the file if the backup is successful (returns true).  But this:
 
 will always delete the file, even if the backup fails (returns false).
 
+*/
+
+
+module.exports = {
+	and2: and2,
+	and3: and3,
+	andN: andN
+};

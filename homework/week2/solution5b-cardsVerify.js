@@ -111,3 +111,12 @@ assert(Number.isNaN(name(false)),   "Test 43b failed");
 assert(Number.isNaN(name(-1)),      "Test 44b failed");
 assert(Number.isNaN(name(52)),      "Test 45b failed");
 assert(Number.isNaN(name(NaN)),     "Test 46b failed");
+
+// Export these functions as a module:
+module.exports = {
+    rank: rank,
+    suit: suit,
+    color: color,
+    name: name,
+    cardID: cardID
+};
