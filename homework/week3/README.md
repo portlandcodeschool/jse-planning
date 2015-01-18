@@ -3,8 +3,13 @@
 _Due Mon. Sept 22_
 
 ---
+**Synopsis**
+**Problem 1:** Simulating arrays _[Easyish, 1.5 hrs]_ **Goals:** Learn how arrays work by building one!
+**Problem 2:** A Cards Toolkit! _[Easy, 1 hr]_ **Goals:** The deck of cards returns! **Notes:** This is an important one, as it's not the last time you'll see it.
+**Problem 3:** Object Comparison _[Moderate, 3 hrs]_ **Goals:** Learn basic Object behaviors and how to manipulate them.
+**Problem 4:** Social network! _[4.5 hrs]_ **Goals:** Some more real-world practice using Objects. **Notes:** Problem 3 will probably help with aspects of this. Also, this problem will involve writing tests, which will be something you do more and more of as the class continues.
 
-**1)  Simulating Arrays** _[Easyish, 1.5 hrs]_
+**1)  Simulating Arrays** 
 
 Create a pseudo-array, an ordinary object which is not an actual Array but behaves
 (somewhat) like one.  You may use a global variable _array_ to store
@@ -40,7 +45,7 @@ console.log(array.join(array.push(array.push('a')))); // What will this print?
 
 ---
 
-**2)  A Cards Toolkit!**  _[Easy, 1 hr]_
+**2)  A Cards Toolkit!**  
 
 Revisit your playing card functions from homework 2, problem 5b.  Repackage them in a Toolkit pattern, as methods of a single master object.  You may assign that object to any variable you like, but that variable should not appear in the definitions of your methods (use `this` instead).  You'll need to change the form of your method definitions and their calls to other methods, but their logic and most of their code will remain the same.
 
@@ -50,7 +55,7 @@ It would be best to modify your own code from Homework 2, but if you didn't solv
 
 ---
 
-**3)  Object Comparison** _[Moderate, 3 hrs]_
+**3)  Object Comparison** 
 
 **a)**
 Write a function `copy(obj)`, which duplicates an object (not just copying a reference to it).  You only need to duplicate only one level: if `obj` contains another object _inner_, the duplicate may share _inner_ rather than copying it too.
@@ -93,7 +98,7 @@ intersection and union are still not symmetric.  That is, `similar(union(A,B),un
 
 ---
 
-**4) Social network!** _[4.5 hrs]_
+**4) Social network!** 
 
 Assume a world in which no two people have the same name.
 Create an object `people` whose purpose is to remember everyone ever mentioned and the relationships between them.
