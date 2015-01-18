@@ -3,11 +3,16 @@
 _Due Mon. Sept 22_
 
 ---
-**Synopsis**
-**Problem 1:** Simulating arrays _[Easyish, 1.5 hrs]_ **Goals:** Learn how arrays work by building one!
-**Problem 2:** A Cards Toolkit! _[Easy, 1 hr]_ **Goals:** The deck of cards returns! **Notes:** This is an important one, as it's not the last time you'll see it.
-**Problem 3:** Object Comparison _[Moderate, 3 hrs]_ **Goals:** Learn basic Object behaviors and how to manipulate them.
-**Problem 4:** Social network! _[4.5 hrs]_ **Goals:** Some more real-world practice using Objects. **Notes:** Problem 3 will probably help with aspects of this. Also, this problem will involve writing tests, which will be something you do more and more of as the class continues.
+####Synopsis
+
+- **Problem 1:** Simulating arrays _[Easyish, 1.5 hrs]_ **Goals:** Learn how arrays work by building one!
+
+- **Problem 2:** A Cards Toolkit! _[Easy, 1 hr]_ **Goals:** The deck of cards returns! **Notes:** This is an important one, as it's not the last time you'll see it.
+
+- **Problem 3:** Object Comparison _[Moderate, 3 hrs]_ **Goals:** Learn basic Object behaviors and how to manipulate them.
+
+- **Problem 4:** Social network! _[4.5 hrs]_ **Goals:** Some more real-world practice using Objects. **Notes:** Problem 3 will probably help with aspects of this. Also, this problem will involve writing tests, which will be something you do more and more of as the class continues.
+
 
 **1)  Simulating Arrays** 
 
