@@ -1,9 +1,30 @@
 ### Homework #3
 
-_Due Mon. Sept 22_
+_Due Mon. Jan 26_
+
+####Synopsis
+
+- **Problem 1:** A Cards Toolkit! _[Easy, 10% of total time]_ **Goals:** The deck of cards returns to demonstrate the _Toolkit_ object pattern. **Notes:** This is an important one, as it's not the last time you'll see it.
+
+- **Problem 2:** Testing and Simulating Arrays _[Moderate, 20%]_ **Goals:** Learn how to write unit tests by testing Arrays, and learn how arrays work by simulating one!
+
+- **Problem 3:** Object Comparison _[Moderate, 30%]_ **Goals:** Learn basic Object behaviors and how to compare and combine them.
+
+- **Problem 4:** Social network! _[Moderate to Difficult, 40%]_ **Goals:** Some more real-world practice using Objects. **Notes:** Problem 3 will probably help with aspects of this.
 
 ---
-**1)  Testing and Simulating Arrays** _[Moderate, 20%]_
+
+**1)  A Cards Toolkit!**  _[Easy, 10%]_
+
+Revisit your playing card functions from homework 2, problem 5b.  Repackage them in a Toolkit pattern, as methods of a single master object.  You may hold that object in a global variable named anything you like (it's _cardTools_ in the template), but its name should not appear in the definitions of your methods; instead, refer to that object as `this`.  You'll need to change the form of your method definitions and the way they call other methods, but their logic and most of their code will remain the same.
+
+You may adopt the enclosed [template file](cards2-template.js).  Make sure your code still passes all the assertions there!
+
+It would be best to modify your own code from Homework 2, but if you didn't solve it before, you may adopt the posted solution instead and modify it here.
+
+---
+
+**2)  Testing and Simulating Arrays** _[Moderate, 20%]_
 
 **a)**
 Write some code to verify that Arrays behave as advertised.  Specifically, write three different functions, each testing one method of Arrays:
@@ -40,17 +61,6 @@ You may use the enclosed [template file](pseudo-array-template.js) to get starte
 _Hint:_ Within each method, to refer to your array object, you may use either the global variable _array_ or the keyword _this_.
 
 **c)**  Test your pseudo-array implementation using your tests from part **a)**.  Your pseudo-array should be able to pass the same tests of push, pop, and join as a real Array.
-
----
-
-**2)  A Cards Toolkit!**  _[Easy, 10%]_
-
-Revisit your playing card functions from homework 2, problem 5b.  Repackage them in a Toolkit pattern, as methods of a single master object.  You may hold that object in a global variable named anything you like (it's _cardTools_ in the template), but its name should not appear in the definitions of your methods; instead, refer to that object as `this`.  You'll need to change the form of your method definitions and the way they call other methods, but their logic and most of their code will remain the same.
-
-You may adopt the enclosed [template file](cards2-template.js).  Make sure your code still passes all the assertions there!
-
-It would be best to modify your own code from Homework 2, but if you didn't solve it before, you may adopt the posted solution instead and modify it here.
-
 
 ---
 
@@ -126,11 +136,11 @@ _Hint:_ the `people` object should contain an index of all people, linking each 
 
 Here is a diagram showing the data structure after `people` is fully initialized but before any method calls:
 
-![](http://portlandcodeschool.github.io/jse-fall14-3/social-network1.svg)
+![](http://portlandcodeschool.github.io/jse-win15-3/social-network1.svg)
 
 Here is the data structure just after the first method call `people.meet('Matt','Tom')`:
 
-![](http://portlandcodeschool.github.io/jse-fall14-3/social-network2.svg)
+![](http://portlandcodeschool.github.io/jse-win15-3/social-network2.svg)
 
 **b)** _[Difficult, 15%]_
 
