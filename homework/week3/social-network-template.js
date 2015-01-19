@@ -1,7 +1,8 @@
 
 var people = {};
 
-people.index = {};
+people.index = {}; 	//each property here will be named after a person
+					//and hold a reference to an object representing that person.
 
 people.meet = function(nameA,nameB) { // returns a number
 	//...
