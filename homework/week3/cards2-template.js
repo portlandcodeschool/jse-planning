@@ -5,31 +5,38 @@ var cardTools = { // a toolbox object used to group related methods
 	// These functions are no longer global variables but instead
 	// properties (methods) of the toolbox object:
 	rank: function(id) {
+		//...
 	},
 
 	suit: function(id) {
+		//...
 	},
 
 	cardID: function(rank,suit) {
+		//...
 	},
 
 	color: function(id) {
-		// uses this.suit() to call the suit method above
+		//...
+		// uses `this.suit()` to call the suit method above
 	},
 
 	name: function(id) {
-		// uses this.rank() and this.suit() to call the rank and suit methods above
+		//...
+		// uses `this.rank()` and `this.suit()` to call the rank and suit methods above
 	}
 
 	// possibly other methods and properties, if needed, including...
 	// a validation function?
 	// some arrays?
 
-};
+}; // end cardTools definition
 
 
 
-// TESTING:
+// ==== TESTING =====
+
+// good old-fashined assert:
 function assert(claim,message) {
     if (!claim) console.error(message);
 }
@@ -46,8 +53,8 @@ function expectNaN(result, attemptStr) {
 	}
 }
 
-//var cardTools = yourNameIfDifferent;  // you may need to define cardTools
-
+// You may need to define cardTools to alias another name:
+// var cardTools = yourToolkitNameIfDifferent;
 
 assert 		(cardTools.rank(0)===1,		"Test 1 failed"); //old-style assertion
 expectValue	(cardTools.rank(0),  1,		"rank(0)");		  // same test in new style
@@ -83,7 +90,6 @@ expectValue	(cardTools.name(51),  'King of Clubs',	"name(51)");
 
 assert 		(Number.isNaN(cardTools.rank(52)),  "Test 21 failed"); //old style assertion
 expectNaN	(cardTools.rank(52), "rank(52)");		  // same test in new style
-
 assert 		(Number.isNaN(cardTools.rank("0")), "Test 22 failed");
 expectNaN	(cardTools.rank('0'), "rank('0')");
 assert 		(Number.isNaN(cardTools.rank(-1)),  "Test 23 failed");
