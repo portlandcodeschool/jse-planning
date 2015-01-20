@@ -80,7 +80,7 @@ expectValue	(cardTools.cardID(8,3),  30,	"cardID(8,3)");
 assert 		(cardTools.color(0)==='red',	"Test 10 failed");
 expectValue	(cardTools.color(0),  'red',	"color(0)");
 assert 		(cardTools.color(2)==='black',	"Test 11 failed");
-expectValue	(cardTools.color(2),  'black',	"color(2))");
+expectValue	(cardTools.color(2),  'black',	"color(2)");
 
 assert 		(cardTools.name(5)==='Two of Diamonds',	"Test 12 failed");
 expectValue	(cardTools.name(5),  'Two of Diamonds',	"name(5)");

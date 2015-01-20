@@ -44,7 +44,7 @@ people.meet = function(nameA,nameB) {
 
     assert(a.friends[nameB] === b.friends[nameA], "meet: counts disagree"); //make sure their counts agree
 
-    //increment meeting count of each, and return incremented count:
+    //increment meeting count of each, and return either incremented count:
     ++a.friends[nameB];
     return ++b.friends[nameA];
 }
@@ -58,6 +58,8 @@ people.haveMet = function(nameA,nameB) {
 people.friendsOf = function(name) {
     var person = this.findPerson(name);
     if (!person) return;
+
+    // Make an array of all of person's friends:
     var friends = Object.keys(person.friends);
     // OR:
     //var friends = Object.getOwnPropertyNames(person.friends);
@@ -66,6 +68,8 @@ people.friendsOf = function(name) {
     //for (var eachName in person.friends) {
     //    friends.push(eachName);
     //}
+
+    // Sort the array, join it into a comma-separated string, and return it:
     return friends.sort().join();
 }
 
@@ -76,7 +80,8 @@ people.friendsOfFriendsOf = function(name) {
 
     var setOfNames = copy(person.friends); //duplicate set of names of friends (will be modified)
     for (var eachName in person.friends) {// for each friend of person...
-        unionWith(setOfNames,this.findPerson(eachName).friends); //union the current set with set of that friend's friends
+        //union the current setOfNames with set of that friend's friends
+        unionWith(setOfNames,this.findPerson(eachName).friends);
     }
 
     var arrOfNames = Object.keys(setOfNames);  //turn set into array
@@ -93,7 +98,7 @@ function copy(obj) {
 }
 
 // More efficient Union, adapted from Problem #2:
-function unionWith(union,objB) { //modifies union obj; make sure it's a copy!
+function unionWith(union,objB) { //modifies the obj passed as parameter union; make sure it's a copy!
     for (var key in objB) {
         union[key] = union[key] || objB[key];
     }

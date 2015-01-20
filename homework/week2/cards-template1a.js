@@ -2,19 +2,19 @@
 
 // function()--> possible return values
 
-function rank(card) { // --> 1..13
+function rank(id) { // --> 1..13
 }
 
-function suit(card) { // --> 1..4
+function suit(id) { // --> 1..4
 }
 
 function cardID(rank,suit) { // --> 0..51
 }
 
-function color(card) { // -->"red","black"
+function color(id) { // -->"red","black"
 }
 
-function name(card) { // --> string
+function name(id) { // --> string
 }
 
 

@@ -32,6 +32,8 @@ function color(card) { // -->"red,"black",NaN
     return theSuit && ((theSuit<3)? "red": "black");
 }
 
+// Both arrays are padded with an unused value ('' but could be anything) in the first position,
+// so that all the other values can be found at the corresponding index (i.e. rankNames[2] is "Two").
 var rankNames = ['','Ace','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten',
                 'Jack','Queen','King'];
 var suitNames = ['','Hearts','Diamonds','Spade','Clubs'];
@@ -39,7 +41,8 @@ var suitNames = ['','Hearts','Diamonds','Spade','Clubs'];
 function name(card) { //--> string, NaN
     var theRank = rank(card);
     var theSuit = suit(card);
-    return theRank && theSuit && (rankNames[theRank]+' of '+suitNames[theSuit]);
+    return theRank && theSuit && //if those are okay...
+        (rankNames[theRank]+' of '+suitNames[theSuit]);//build the name string
 }
 
 
@@ -112,11 +115,3 @@ assert(Number.isNaN(name(-1)),      "Test 44b failed");
 assert(Number.isNaN(name(52)),      "Test 45b failed");
 assert(Number.isNaN(name(NaN)),     "Test 46b failed");
 
-// Export these functions as a module:
-module.exports = {
-    rank: rank,
-    suit: suit,
-    color: color,
-    name: name,
-    cardID: cardID
-};

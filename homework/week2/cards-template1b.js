@@ -1,18 +1,18 @@
 // Error-detecting version
 
-function rank(card) {
+function rank(id) {
 }
 
-function suit(card) {
+function suit(id) {
 }
 
 function cardID(rank,suit) {
 }
 
-function color(card) {
+function color(id) {
 }
 
-function name(card) {
+function name(id) {
 }
 
 

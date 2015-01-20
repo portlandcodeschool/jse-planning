@@ -92,9 +92,3 @@ will always delete the file, even if the backup fails (returns false).
 
 */
 
-
-module.exports = {
-	and2: and2,
-	and3: and3,
-	andN: andN
-};

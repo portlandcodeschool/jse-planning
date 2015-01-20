@@ -1,7 +1,8 @@
 // Part A:
 function fractionString(n,d) {
-  var remainder = n%d;
-  var wholes = (n - remainder)/d; //always integer
+  var remainder = n%d,
+      wholes = Math.floor(n/d);
+            // OR: (n - remainder)/d; //always integer
   return wholes + ' ' + remainder + '/' + d;
 }
 
@@ -29,6 +30,3 @@ function fractionString(n,d) {
 
   return output;
 }
-
-// Export function as a module:
-module.exports = fractionString;
