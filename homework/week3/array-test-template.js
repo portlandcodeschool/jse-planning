@@ -24,7 +24,7 @@ function testPush(array) { // accept an array to test, if provided
 	expectValue(array[0], 'a', "array[0]"); // check array element
 	expectValue(array.length, 1, "array.length");	// check array length
 
-	expectValue(array.push('b'), 1, "array.push('b')");
+	expectValue(array.push('b'), 2, "array.push('b')");
 	expectValue(array[0], 'a', "array[0]"); //should remain 'a'
 	expectValue(array[1], 'b', "array[1]");
 	expectValue(array.length, 2, "array.length");

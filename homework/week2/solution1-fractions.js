@@ -30,3 +30,7 @@ function fractionString(n,d) {
 
   return output;
 }
+
+if (module) {
+  module.exports = fractionString;
+}

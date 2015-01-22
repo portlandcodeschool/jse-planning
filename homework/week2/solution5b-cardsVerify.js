@@ -115,3 +115,12 @@ assert(Number.isNaN(name(-1)),      "Test 44b failed");
 assert(Number.isNaN(name(52)),      "Test 45b failed");
 assert(Number.isNaN(name(NaN)),     "Test 46b failed");
 
+if (module) {
+    module.exports = {
+        rank:rank,
+        suit:suit,
+        name:name,
+        color:color,
+        cardID:cardID
+    }
+}
