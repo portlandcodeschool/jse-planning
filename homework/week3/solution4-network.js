@@ -104,21 +104,7 @@ function unionWith(union,objB) { //modifies the obj passed as parameter union; m
     }
 }
 
-//======== Sample Testing ========
-assert(people.meet("Al","Al") === undefined,    'Test 1 failed');
-assert(people.meet("Al","Ben") === 1,           'Test 2 failed');
-assert(people.meet("Al","Clarissa") === 1,      'Test 3 failed');
-assert(people.meet("Ben","Dan") === 1,          'Test 4 failed');
-assert(people.meet("Dan","Clarissa") === 1,     'Test 5 failed');
-assert(people.meet("Ben","Clarissa") === 1,     'Test 6 failed');
-assert(people.meet("Al","Cris") === 1,          'Test 7 failed');
-assert(people.meet("Dan","Ben") === 2,          'Test 8 failed');
-assert(people.meet("Cris","Shawna") === 1,      'Test 9 failed');
 
-assert(people.haveMet("Clarissa","Al") === 1,   'Test 10 failed');
-assert(people.haveMet("Barack","Dan") === undefined,    'Test 11 failed');
-assert(!people.haveMet("Ben","Shawna"),                 'Test 12 failed');//0 or undef OK
-assert(people.friendsOf("Ben") === "Al,Clarissa,Dan",   'Test 13 failed');
-
-assert(people.friendsOfFriendsOf("Ben")  === "Al,Ben,Clarissa,Cris,Dan",    'Test 14 failed');
-assert(people.friendsOfFriendsOf("Cris") === "Al,Ben,Clarissa,Cris,Shawna", 'Test 15 failed');
+if (module) {
+    module.exports = people;
+}
