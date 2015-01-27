@@ -1,4 +1,4 @@
-// Part a)
+// Part b)
 var array = {
 	length:0,
 
@@ -31,19 +31,3 @@ var array = {
     	return str;
     }
 }
-
-// Part b)
-array.length=0;
-array.push('c');//c
-array.push('b');//c,b
-array.push('a');//c,b,a
-array.pop();    //c,b
-console.log(array.join('a')); //'cab' (inserts delimiter 'a' between c,b)
-
-// Part c)
-array.length=0;
-console.log(array.join(array.push(array.push('a'))));
-// That expression reduces to:
-// console.log(array.join(array.push(1));  //array now contains ['a']
-// console.log(array.join(2));   //array now contains ['a',1]
-// console.log('a21');
