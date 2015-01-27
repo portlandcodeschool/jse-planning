@@ -6,13 +6,13 @@ var cardTools = { // a toolbox object used to group related methods
 	// These functions are no longer global variables but instead
 	// properties (methods) of the toolbox object:
     rank: function(id) { // --> 1..13, NaN
-        return this.isValid(card,0,51) &&
-            Math.floor(card/4)+1;
+        return this.isValid(id,0,51) &&
+            Math.floor(id/4)+1;
     },
 
     suit: function(id) { // --> 1..4, NaN
-        return this.isValid(card,0,51) &&
-            (card%4)+1;
+        return this.isValid(id,0,51) &&
+            (id%4)+1;
     },
 
     cardID: function(rank,suit) { // --> 0..51, NaN
@@ -30,7 +30,7 @@ var cardTools = { // a toolbox object used to group related methods
         var rank = this.rank(id);
         var suit = this.suit(id);
         return rank && suit && (this.rankNames[rank]+' of '+this.suitNames[suit]);
-    }
+    },
 
 	// possibly other methods and properties, if needed, including...
 	// a validation function?

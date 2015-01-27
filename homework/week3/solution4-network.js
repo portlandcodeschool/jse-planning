@@ -42,7 +42,8 @@ people.meet = function(nameA,nameB) {
     if (!b.friends[nameA])
             b.friends[nameA]=0;
 
-    assert(a.friends[nameB] === b.friends[nameA], "meet: counts disagree"); //make sure their counts agree
+    //make sure their counts agree
+    assert(a.friends[nameB] === b.friends[nameA], "meet: counts disagree");
 
     //increment meeting count of each, and return either incremented count:
     ++a.friends[nameB];
@@ -88,7 +89,7 @@ people.friendsOfFriendsOf = function(name) {
     return arrOfNames.sort().join();
 }
 
-// Copy from Problem #2:
+// Copy function from Problem #2:
 function copy(obj) {
     var clone = {};
     for (var key in obj) {
@@ -98,13 +99,14 @@ function copy(obj) {
 }
 
 // More efficient Union, adapted from Problem #2:
-function unionWith(union,objB) { //modifies the obj passed as parameter union; make sure it's a copy!
+function unionWith(union,objB) { //modifies the obj passed as parameter union;
+                                // make sure it's a copy!
     for (var key in objB) {
         union[key] = union[key] || objB[key];
     }
 }
 
-
-if (module) {
+// This lets external code treat this file as a module:
+if (typeof module === 'object') {
     module.exports = people;
 }

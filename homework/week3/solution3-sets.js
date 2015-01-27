@@ -106,7 +106,7 @@ function difference(objA,objB) {
     return diff;
 }
 
-// Part c)
+// ===== Part c) =====
 function assert(claim,warning) {
     if (!claim) console.log(warning);
 }
@@ -156,7 +156,7 @@ For example: union({a:1},{a:2}) is {a:1}, but union({a:2},{a:1}) is {a:2}.
 Those sets are similar (same keys) but not equal (different values).
 */
 
-if (module) {
+if (typeof module === 'object') {
     module.exports = {
         union:union,
         intersection:intersection,
