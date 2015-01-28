@@ -1,5 +1,6 @@
 function makeCard(id) {
     // If id is invalid (out of range, etc)
+    // ...
     return null;
 
     // Otherwise build an instance object with an id property,
@@ -8,19 +9,10 @@ function makeCard(id) {
     //   suit()
     //   color()
     //   name()
-    // Each method should be a just reference to the corresponding method
+    // Each method property should be just a link to the corresponding method
     //  of the factory itself.
 
     return /* that instance here */;
-}
-
-//-----------------------
-// Methods to be called through factory:
-//-----------------------
-
-makeCard.isCard = function(card) { // --> true,false
-    // return true if card is a valid card instance made by this factory
-
 }
 
 //-----------------------------
@@ -46,10 +38,28 @@ makeCard.cardName = function() { //--> string, NaN
     // code here...
 };
 
-    
+
+//-----------------------
+// Methods to be called through factory only:
+//-----------------------
+
+makeCard.isCard = function(thing) { // --> true,false
+    // return true if thing is a valid card instance made by this factory
+
+}
+
+//---------------------
+// Additional factory properties
+//---------------------
+
+makeCard.fullSet = []; //<-- instead, generate array of 52 card instances
 
 
-// Testing suite...
+
+//----------------------
+// Simple Testing suite
+// Supplement as needed!
+
 function assert(claim,message) {
     if (!claim) console.error(message);
 }
@@ -59,7 +69,6 @@ var card0 = makeCard(0);
 var card3 = makeCard(3);
 var card5 = makeCard(5);
 var card51 = makeCard(51);
-
 
 // Test instance methods:
 assert(card0.rank()===1,  "Test 1 failed");
@@ -80,13 +89,20 @@ assert(!makeCard.isCard(0),    "Test 23 failed")
 assert(!makeCard.isCard({}),   "Test 24 failed")
 
 
-// Test card-making results:
+// Test failed card-making results:
 assert(!makeCard(52),"Test 26 failed");
 assert(!makeCard("0"),"Test 27 failed");
 assert(!makeCard(-1),"Test 28 failed");
 assert(!makeCard(false),"Test 30 failed");
 assert(!makeCard(true),"Test 31 failed");
 
+
+// Test fullSet array:
+assert(typeof makeCard.fullSet === 'object', "Test 40 failed");
+assert(makeCard.fullSet.length === 52, "Test 41 failed");
+assert(makeCard.isCard(makeCard.fullSet[0]), "Test 42 failed")
+assert(makeCard.fullSet[5].name() === card5.name(), "Test 43 failed");
+assert(makeCard.fullSet[51].name() === card51.name(), "Test 44 failed");
 
 // Test that methods are shared:
 assert(card0 !== card3, "Test 50 failed"); //first prove different cards

@@ -1,8 +1,15 @@
+// Problem 2a): build a deque factory
 //-------
-// Part a): build a deque factory
 
+// The factory itself:
 function makeDeque(values) {
 	// ...
+	// return an instance object
+}
+
+// The factory's instance methods:
+makeDeque.length = function() {
+	//...
 }
 
 makeDeque.top = function() {
@@ -41,24 +48,5 @@ makeDeque.sort = function(compareValsFn) {
 	//...
 }
 
-//-------
-// Part b):
-var someCards = /* make array of 52 card objects here, using your code from Problem 1) */;
-// At this point, data looks like Fig.1
-
-//-------
-// Part c): build a deque instance:
-var deckOfCards = makeDeque(someCards);
-// sort it:
-deckOfCards.sort(/* something here */);
-// At this point, data looks like Fig.2
-
-// sort it differently:
-deckOfCards.sort(/* something different here */);
-
-//-------
-// Part d): build another deque instance:
-var someNames = /* make array of names here */;
-var deckOfNames = makeDeque(someNames);
-deckOfNames.sort(/* something here */);
+// Feel free to write tests for your code!
 
