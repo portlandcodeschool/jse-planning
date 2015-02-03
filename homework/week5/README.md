@@ -21,16 +21,6 @@ the methods shared between instances need not be linked initially as methods of 
 
 
 
-**b)** Write another instance method for all cards:
-
-renderText(container): Write the card's name to the DOM as a new, last child of container.
-
-If container equals undefined or console, just console.log the name.
-Otherwise, container should be a DOM element (possibly document).
-
-
-
-**c)** 
 
 ---
 
@@ -65,4 +55,16 @@ _(Hint #2: the private arrays will live in a function scope, not in an object.)_
 
 The log should not be able to be modified other than through a user's _record_ method.
 
+**4) Showing Off the Deque**
 
+
+**a)** Write another instance method for all cards:
+
+renderText(container): Write the card's name to the DOM as a new, last child of container.
+
+If container equals undefined or console, just console.log the name.
+Otherwise, container should be a DOM element (possibly document).
+
+
+
+**b)** 
