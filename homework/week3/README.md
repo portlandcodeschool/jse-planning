@@ -6,7 +6,7 @@ _Due Mon. Jan 26_
 
 - **Problem 1:** A Cards Toolkit! _[Easy, 10% of total time]_ **Goals:** The deck of cards returns to demonstrate the _Toolkit_ object pattern. **Notes:** This is an important one, as it's not the last time you'll see it.
 
-- **Problem 2:** Testing and Simulating Arrays _[Moderate, 20%]_ **Goals:** Learn how to write unit tests by testing Arrays, and learn how arrays work by simulating one!
+- **Problem 2:** Testing and Simulating Arrays _[Moderate, 20%]_ **Goals:** Learn how to write unit tests by testing Arrays, and learn how arrays work by simulating one! **Notes:** This is your introduction to writing tests, which you will be doing more of.
 
 - **Problem 3:** Object Comparison _[Moderate, 30%]_ **Goals:** Learn basic Object behaviors and how to compare and combine them.
 

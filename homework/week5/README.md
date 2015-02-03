@@ -4,17 +4,20 @@ _Due Mon. Feb.8_
 
 ####Synopsis
 
-- **Problem 1:** A Cards Module _[25% of total time]_ **Goals:** The deck of cards returns again to demonstrate the _Factory_ and _Instance_ object patterns.  You'll also practice combining JS files within HTML.
+- **Problem 1:** A Cards Module _[25% of total time]_ **Goals:** Start working with IIFEs and closure to create a self-contained module for your cards.
+- **Problem 2:** All Hands Off Deque _[]_ **Goals:** Continue to get comfortable with closure by creating a secure version of the deque from last week.
+- **Problem 3:** Secrets At All Levels _[]_ **Goals:** Build on Monday's in-class password example to get more comfortable working with closures, and with both instance and factory methods.
+- **Problem 4:** Showing Off the Deque _[]_ **Goals:** Learn the basics of DOM manipulation by displaying a deque of cards in the browser.
 
 ---
 
 
 ---
 
-**1)  Card module** _[moderate, 2 hrs]_
+**1)  Card module**
 
 Package your earlier playing-card code into a module; that is, wrapped inside an immediately-invoked function expression (IIFE, or "Iffy").  Your module should return one object: the factory _makeCard_.  As before, calling `makeCard(id)` should create and return a card object with methods for rank, suit, name, etc, but with a structural difference:
-the methods shared between instances need not be linked initially as methods of the factory, but can instead be functions local to the IFFE's scope.
+the methods shared between instances need not be linked initially as methods of the factory, but can instead be functions local to the IIFE's scope.
 
 
 
@@ -24,7 +27,6 @@ renderText(container): Write the card's name to the DOM as a new, last child of 
 
 If container equals undefined or console, just console.log the name.
 Otherwise, container should be a DOM element (possibly document).
-
 
 
 
