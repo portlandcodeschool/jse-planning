@@ -1,6 +1,10 @@
-#### Homework 5
+### Homework 5
 
-Due Mon. 2/8
+_Due Mon. Feb.8_
+
+####Synopsis
+
+- **Problem 1:** A Cards Module _[25% of total time]_ **Goals:** The deck of cards returns again to demonstrate the _Factory_ and _Instance_ object patterns.  You'll also practice combining JS files within HTML.
 
 ---
 
@@ -10,7 +14,8 @@ Due Mon. 2/8
 **1)  Card module** _[moderate, 2 hrs]_
 
 Package your earlier playing-card code into a module; that is, wrapped inside an immediately-invoked function expression (IIFE, or "Iffy").  Your module should return one object: the factory _makeCard_.  As before, calling `makeCard(id)` should create and return a card object with methods for rank, suit, name, etc, but with a structural difference:
-the methods shared between instances need not be linked initially as methods of the factory, but can instead be 'siblings' of it, functions local to the IFFE's scope.
+the methods shared between instances need not be linked initially as methods of the factory, but can instead be functions local to the IFFE's scope.
+
 
 
 **b)** Write another instance method for all cards:
