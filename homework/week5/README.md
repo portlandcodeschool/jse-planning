@@ -1,6 +1,8 @@
 #### Homework 5
 
-Due Mon. 10/6
+Due Mon. 2/8
+
+---
 
 
 ---
@@ -9,6 +11,19 @@ Due Mon. 10/6
 
 Package your earlier playing-card code into a module; that is, wrapped inside an immediately-invoked function expression (IIFE, or "Iffy").  Your module should return one object: the factory _makeCard_.  As before, calling `makeCard(id)` should create and return a card object with methods for rank, suit, name, etc, but with a structural difference:
 the methods shared between instances need not be linked initially as methods of the factory, but can instead be 'siblings' of it, functions local to the IFFE's scope.
+
+
+**b)** Write another instance method for all cards:
+
+renderText(container): Write the card's name to the DOM as a new, last child of container.
+
+If container equals undefined or console, just console.log the name.
+Otherwise, container should be a DOM element (possibly document).
+
+
+
+
+**c)** 
 
 ---
 

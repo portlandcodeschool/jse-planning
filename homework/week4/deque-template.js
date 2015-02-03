@@ -5,10 +5,15 @@
 function makeDeque(values) {
 	// ...
 	// return an instance object
+
+	//...
+	//deque.length = makeDeque.arrLength;
+	//...
 }
 
 // The factory's instance methods:
-makeDeque.length = function() {
+makeDeque.arrLength = function() { 	// can't use property named length;
+				// as a function, makeDeque has a predefined length property.
 	//...
 }
 

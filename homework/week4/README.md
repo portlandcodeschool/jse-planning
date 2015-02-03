@@ -58,7 +58,7 @@ In Problem 2b), you'll combine the card-factory module with a "deque" module.
 **a)** _[25%]_
 Write a deque factory, a function `makeDeque(values)` which follows the Factory pattern.  Each call to `makeDeque(values)` should build and return a new deque instance, which holds a copy (not just an alias!) of the array _values_.  Each deque instance has the following methods:
 
-* `length()`: return the number of items currently in the deque.  Notice that this can be used to _get_ the deque's length but not to _change_ it.
+* `length()`: return the number of items currently in the deque.  Notice that this can be used to _get_ the deque's length but not to _change_ it. _The shared copy must be linked to the factory by a different name, e.q. `makeDeque.arrLength`, although it can be linked to the instance as `length`.
 
 * `top()`: return the element on top of the deque (or undefined if none).
 
