@@ -10,7 +10,11 @@ var makeCard = // receive factory with external name `makeCard`
             rank : rank,
             suit : suit,
             color: color,
-            name : name
+            name : name,
+            shortName : shortName,
+
+            renderText  : renderText,
+            renderImage : renderImage
         };
         return card;
     };
@@ -26,7 +30,10 @@ var makeCard = // receive factory with external name `makeCard`
 
     var rankNames = ['','Ace','Two','Three','Four','Five','Six','Seven',
                         'Eight','Nine','Ten','Jack','Queen','King'];
+    var rankAbbrs = ['','A','2','3','4','5','6','7','8','9','10','J','Q','K'];
+
     var suitNames = ['','Hearts','Diamonds','Spades','Clubs'];
+    var suitAbbrs = ['','H','D','S','C'];
 
 //-----------------------
 // Methods to be called through factory:
@@ -61,6 +68,58 @@ var makeCard = // receive factory with external name `makeCard`
         return rankVal && suitVal &&
             (rankNames[rankVal]+' of '+suitNames[suitVal]);
     };
+
+    var shortName = function() { //--> string, NaN
+        var rankVal = this.rank();
+        var suitVal = this.suit();
+        return rankVal && suitVal &&
+            (rankAbbrs[rankVal]+suitAbbrs[suitVal]);
+    };
+
+    //internal use only:
+    var fileName = function(card) {
+        var rankVal = card.rank(),
+            rankName = (rankVal>1 && rankVal<11)?
+                rankAbbrs[rankVal]:
+                rankNames[rankVal].toLowerCase();
+            suitName = suitNames[card.suit()].toLowerCase();
+        return rankName+'_of_'+suitName+'.svg';
+    }
+
+
+    // ---- Problem 4: ----
+    var renderText = function(container) {
+        if (typeof container === 'string') {
+            container = document.getElementById(container);
+        }
+        //if (!container) {
+        //    container = document.body;
+        //}
+        if (container instanceof HTMLElement) {
+            var myHtml = '<span class="'+this.color()+'">' +
+                        this.shortName() + '</span>';
+            //console.log(myHtml);
+            container.innerHTML += myHtml;
+        }
+    }
+
+    var renderImage = function(container) {
+        if (typeof container === 'string') {
+            container = document.getElementById(container);
+        }
+        if (container instanceof HTMLElement) {
+            var myHtml = '<img class="card-image" src="images/SVG-cards-1.3/' +
+                        fileName(this) + '">';
+            //console.log(myHtml);
+            container.innerHTML += myHtml;
+        }
+
+    }
+
+    makeCard.fullSet = [];
+    for (var id=0; id<52; ++id) {
+        makeCard.fullSet.push(makeCard(id));
+    }
 
     return makeCard;  //return factory function, product of IIFE's work
 

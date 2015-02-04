@@ -88,6 +88,27 @@ function makeDeque(values) {
  		}
  	}
 
+ 	function render(container,renderItemFn) {
+ 		if (typeof container === 'string') {
+ 			container = document.getElementById(container);
+ 		}
+ 		if (!(container instanceof HTMLElement)) {
+ 			console.log('no such element');
+ 			return;
+ 		}
+ 		for (var i=0; i<array.length; ++i) {
+ 			var cell = document.createElement('div');
+ 			cell.className = 'dequeItem';
+ 			renderItemFn(array[i], cell);
+ 			container.appendChild(cell);
+ 		}
+ 	}
+
+/* 	function overlappingDivs(item, container) {
+ 		var div = document.createElement('div');
+ 	}
+ 	*/
+
 	deque = {// export each public method by linking an instance property to it:
 			sort : sort,
 			map : map,
@@ -98,7 +119,9 @@ function makeDeque(values) {
 			push : push,
 			pop : pop,
 			shift : shift,
-			unshift : unshift
+			unshift : unshift,
+
+			render : render
 	};
 
 	return deque;

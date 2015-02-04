@@ -1,0 +1,7 @@
+.row {
+	clear:both;
+}
+.dequeItem {
+	float:left;
+	margin:5px;
+}
