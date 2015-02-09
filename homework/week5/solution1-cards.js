@@ -126,6 +126,11 @@ var makeCard = // receive factory with external name `makeCard`
 })(); //end IIFE definition and do it now!
 
 
+this.foo = 'FOO!';
+
+if (typeof module !== "undefined") {
+    module.exports = makeCard;
+}
 
 // ====================
 // Testing suite as before...

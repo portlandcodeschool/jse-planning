@@ -76,17 +76,17 @@ Write a new method for all card instances, `shortName()`, which is an alternativ
 
 For both methods, parameter _cell_ should be a DOM element or a string.  If it's a string, use the DOM element whose id is that string.
 
-_(Hint: Each card will need to generate a specific filename for its own image.  All filenames should be relative to main.html (and will start with "images/").  You may modify the file [cards.ss](cards.css) as desired to customize appearance.)_
+_(Hint: Each card will need to generate a specific filename for its own image.  All filenames should be relative to main.html (and will start with "images/").  You may modify the file [cards.css](cards.css) as desired to customize appearance.)_
 
 **c)** Write a new instance method for all deques:
 
-- _render(container, renderItemFn)_:  Like _cell_ above, _container_ should be a DOM element or an id string identifying one; `renderItemFn` is a callback.  First clear any contents of _container_.  Then, for each item in the deque, create a cell (a new _<div>_ element) with an appropriate CSS class (e.g. _dequeItem_), make that cell a child of _container_, and call `renderItemFn(item,cell)` on it, where _item_ is the deque item and _cell_ is the DOM container assigned to it.
+- _render(container, renderItemFn)_:  Like _cell_ above, _container_ should be a DOM element or an id string identifying one; `renderItemFn` is a callback.  First clear any contents of _container_.  Then, for each item in the deque, create a cell (a new `<div>` element) with an appropriate CSS class (e.g. _dequeItem_), make that cell a child of _container_, and call `renderItemFn(item,cell)` on it, where _item_ is the deque item and _cell_ is the DOM container assigned to it.
 
-You may modify the file [deque.css] to customize the appearance of the deque's cells (which each contain item-specific content).
+You may modify the file [deque.css](deque.css) to customize the appearance of the deque's cells (which each contain item-specific content).
 Remember that a deque has no awareness of a card or its possible methods (e.g. `card.renderImage()`); the deque must rely on callback _renderItemFn_ to decide the details of rendering into a cell.
 Your deque code should work equally well for deques of strings or other content.
 
-**d)** In file [main.js], create some callbacks to play the role of _renderItemFn_ and render a deck of cards in two ways:
+**d)** In file [main.js](main.js), create some callbacks to play the role of _renderItemFn_ and render a deck of cards in two ways:
 
 - In the container with id 'card-names', display the deck as colored card names.
 
