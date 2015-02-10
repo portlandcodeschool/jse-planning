@@ -1,9 +1,17 @@
 ### Homework #6
-Due Mon. 10/13
+
+_Due Mon. Feb.16_
+
+####Synopsis
+
+- **Problem 1:** Constructor Basics _[10% of total time]_ **Goals:** Practice the fundamentals of constructors and prototypes.
+- **Problem 2:** Imaginary Menagerie _[15%]_ **Goals:** Practice simple inheritance and subclassing.
+- **Problem 3:** Cards Finale _[25%]_ **Goals:** Convert your card factory into a constructor, then connect it to a specialize subclass of Cards.
+- **Problem 4:** Memory Game Engine _[50%]_ **Goals:** Integrate several past lessons by using separate modules to implement the first stage of a browser-based memory game.  You'll keep building more in future weeks, so this problem is the most important. 
 
 ---
 
- **1)  Constructor basics** _[easy, 1/2 hr]_
+ **1)  Constructor basics** _[10%]_
 
 **a)** Here's a sequence of simple exercises related to how constructors and prototypes work.
 
@@ -40,9 +48,9 @@ There is a difference between the behaviors of `objA` and `objB`!  Explain.
 
 ---
 
-**2) Simple Subclassing** _[easyish: 1hr]_
+**2) Imaginary Menagerie** _[15%]_
 
-Implement a simple taxonomy of four related classes, using a constructor for each:
+**a)** Implement a simple taxonomy of four related classes, using a constructor for each:
 
 - _Animal_: every instance of an Animal should inherit a method called _move()_.  For basic animals, this just returns the string "walk".
 - _Bird_: A subclass of Animal.  Every Bird instance should return "fly" instead of "walk" when asked to _move()_.  All Birds also have a property _hasWings_ which is true.
@@ -65,8 +73,27 @@ pengo instanceof Bird; 	  //true
 pengo instanceof Animal;  //true
 ```
 
+**b)** Create a class _Egg_, whose instances have one method, _hatch(name)_, which returns a new instance (named _name_) of the same species which laid the egg.
+Assume that every Animal can lay an egg with an instance method _layEgg()_ which creates a new Egg instance.
+Try to solve this without subclassing Egg and without implementing _layEgg_ and _hatch_ more than once.
+
+You should see this behavior:
+```
+var pengo = new Penguin("Pengo");
+var egg = pengo.layEgg();
+egg.constructor === Egg; //true
+var baby = egg.hatch("Penglet");
+baby instanceof Penguin; //true
+
+var nemo = new Fish("Nemo");
+egg = nemo.layEgg();
+egg.constructor === Egg; //true
+baby = egg.hatch("Nemolet");
+baby instanceof Fish; //true
+```
+
 ---
-**3) Cards Finale** _[moderate, 2hrs]_
+**3) Cards Finale** _[25%]_
 
 **a)**
 Rewrite your _makeCard_ factory as a constructor _Card_.  You should define your constructor and any supplementary code inside an IIFE and export it to a global variable _Card_.
@@ -97,42 +124,44 @@ The two classes should be able to co-exist and pass all of the tests in the temp
 
 
 ---
-**4) Memory Game** _[moderate, 4 hours]_
 
-Write a game of Memory, in which some set of cards are arranged face down on a board and a player turns them over looking for pairs.
-In this version, your board will be a single row of cards (later you'll convert it to a 2D grid) which are identified by a single position number.
+**4) Memory Game** _[50%]_
 
-_[UPDATE: You can write the constructor using either public data accessible to a prototype, or private data in a closure with dedicated methods.  But you'll find in difficult to combine them.  Pick one strategy or the other.]_
+Write the engine for a game of Memory, in which some set of cards are arranged face down on a board and a player turns them over looking for pairs.  This week, you'll only implement the game's logic and an API, not a graphical interface.  Your game's "board" will be a single row of cards which are identified by a single position number (later you can convert it to a 2D grid).
 
-Use a constructor ~~and prototype~~ _(optional)_, packaged in an IIFE, to implement a game board.
-Your _MemoryBoard_ constructor should receive ~~3~~ 4 arguments:
+This week you'll write two independent modules which work together: _MemoryGame_ and _MemoryCards_.  Each should be a constructor packaged as an IIFE in a separate file, [memory-game.js](memory-game.js) and [memory-cards.js](memory-cards.js).  Each constructor can implement its instance methods and data in either of two ways: 1) storing instance data in public properties which are accessed through shared prototype methods (like Problems 2-3 above), or 2) using instance-specific methods which access private data variables through closure (like the Deques).
 
-1. an array of values, each representing a game "card" (not necessarily a playing card).  You should have an even number of values which can be matched in pairs.
-1. a callback which takes 2 cards as parameters and returns true if they match.  The definition of "match" will depend on the card type.
-1. _[ADDED: an optional "display" callback which takes 1 parameter (the raw value of a card from the values array) and converts it to another value.  If this argument is undefined or null, the raw value will be displayed instead._
-1. an optional "win" callback which takes no arguments and is run when the game ends.
+**a)**
 
-For example, if you decide to use regular playing cards in your game, your _values_ array could be a set of 52 cards generated by your _Card_ constructor.  In that case, an appropriate matching function might return true if two cards are the same rank and same color, creating 26 matching pairs.  _[And an appropriate display callback might return the card's name.]_ Alternatively, you could use simple strings as cards, with two of each in your values set.  But your implementation should be completely general, without commitment to any particular values.  Only the consumer of your module will supply the values and matching rule.
+Write a _MemoryCards_ module representing a set of cards and the possible matches between them.  You may adapt your earlier playing-card module or write a new one for a completely different system of cards.  Two simple examples are in [cardset-example.js](cardset-example.js).  Your _MemoryCards_ constructor needs to build only one instance, an object representing a _set of cards_ rather than an individual card.  The _MemoryCards_ instance should have the following methods:
 
-[This template](template-memory.js) shows some examples of value sets and their corresponding callbacks.
+* values(): return an array of all the card values in the set.  Each value could be either an object or a primitive, depending on how you choose to implement your cards.
 
-Your board must keep track of whether and where any card is face up, where any matching cards have been removed, and where unmatched cards remain.
+* match(valA,valB): given card values _valA_ and _valB_ (both of which should be found in _values()_), return true if they match as a pair, or false otherwise.
 
-Your board should have these instance methods:
+* display(val): given card value _val_, return a string which represents that card.  If your card values are already strings, this method could merely return _val_, but if your card values are objects, you'll need to generate a string version (e.g. the _name()_ or _shortName()_ of playing-card objects)
+
+For example, if you decide to use regular playing cards in your game, your _values()_ could be a set of 52 card objects generated by your _Card_ constructor.  In that case, an appropriate _match()_ function might return true if two cards are the same rank and same color, creating 26 matching pairs, and _display()_ might return the card's name.
+
+**b)**
+
+Write a _MemoryGame_ module representing the rules and status of a game.  Each call to the constructor _MemoryGame(cardset)_ will construct one game instance using the cards represented in _cardset_, an instance of _MemoryCards_.
+Each _MemoryGame_ instance must keep track of whether and where any card is face up, where any matching cards have been removed, and where unmatched cards remain.
+It should have these methods:
 
 * `reset()` replaces all removed cards, reshuffles the entire board, and rebuilds the board face-down.
 
 * `faceupWhere()` returns the position (a number) of the one face-up card (if any), otherwise returns _false_.
 
-* `faceupValue()` returns the value of the one face-up card (if any), otherwise _false_.
+* `faceupValue()` returns the raw value of the one face-up card (if any), otherwise _false_.
 
-* `remaining()` returns an array of the positions of all cards still on the board.
+* `remaining()` returns an array of the positions of all cards still on the board, including _faceupWhere()_ if any.
 
-* `lift(where)`  If there is a face-down card at position _where_ (a single number), return its display value _(by calling the display callback on the card's raw value)_; otherwise return _false_.  If there is not currently a face-up card, leave this card face-up.  If there's already a face-up card, do one of the following:
+* `lift(where)` attempts to lift a card.  If there is a face-down card at position _where_ (a single number), return its display value _(by calling `cardset.display(val)` callback on the card's raw value)_; otherwise return _false_.  If there is not currently a face-up card, leave this card face-up.  If there's already a face-up card, do one of the following:
 
-	* If this card and the face-up card match (according to your matching callback), remove both from the board.  If all pairs are removed from the board, you win the game; run the "win" callback, if any.
+	* If this card and the face-up card match (according to `cardset.match()`), remove both from the board.  If all pairs are removed from the board, you win the game.
 
 	* If there is no match, leave both cards in place and turn them face down.
 
-Though it might be difficult, it should be possible to play an entire game through the console, one `lift()` at a time.
+It should be possible (though inconvenient) to play an entire game through the console, one `lift()` call at a time.
 

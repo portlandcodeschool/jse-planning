@@ -1,7 +1,18 @@
+function Egg(species) {
+	this.hatch = function(name) {
+		return new species(name);
+	}
+}
+
 function Animal(name) {
 	this.name = name;
 }
-Animal.prototype.move = function() { return 'walk'};
+Animal.prototype.move = function() {  //subclasses will override
+	return 'walk';
+}
+Animal.prototype.layEgg = function() {
+	return new Egg(this.constructor);
+}
 
 // ========= Birds ==========
 // Create new class (ctor):
