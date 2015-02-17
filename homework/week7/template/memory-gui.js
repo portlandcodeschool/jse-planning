@@ -2,9 +2,9 @@ var MemoryGUI = (function () {
 
 	//...
 
-	function GUI(len,clickFn,resetGameFn) {
+	function GuiCtor(container,game) {
 
-		// public methods:
+		// public instance methods:
 		this.reset = function() {
 			//...
 		}
@@ -18,8 +18,8 @@ var MemoryGUI = (function () {
 			//...
 		}
 
-		//...
+		// Do some initial setup and rendering...
 	}
 
-	return GUI;
+	return GuiCtor;
 })();
