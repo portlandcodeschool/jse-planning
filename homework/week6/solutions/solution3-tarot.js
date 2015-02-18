@@ -3,14 +3,11 @@ var Card = (function(){
 	function Ctor(id) {
 		this.id = id;
 	}
-
-	Ctor.isCard = function(card) {
-		return (card.constructor === this)
-			&& card.isValid();
-	}
+	var numCards = 52;
 
 	var proto = Ctor.prototype;
 
+	// Instance methods (shared via prototype):
 	proto.isValid = function() {
 		return ((typeof this.id)==="number")//correct type
 			&& (this.id%1 === 0)  //integer
@@ -33,14 +30,29 @@ var Card = (function(){
         var suitVal = this.suit();
         return rankVal && suitVal &&
             (this.constructor.rankNames()[rankVal-1]
-            +' of '
+            +' of '						 		//-1 b/c no leading blank in arrays
             +this.constructor.suitNames()[suitVal-1]);
 	}
 
+	// Private data:
+
+	// The leading blank element is now gone from both arrays:	
 	var suitNames = ['Hearts','Diamonds','Spades','Clubs'];
 
 	var rankNames = ['Ace','Two','Three','Four','Five','Six','Seven',
 					'Eight','Nine','Ten','Jack','Queen','King'];
+
+	var fullSet = [];
+	for (var i=0; i<numCards; ++i) {
+		fullSet.push(Ctor(i));
+	}
+
+	// Class methods:
+
+	Ctor.isCard = function(thing) {
+		return (thing.constructor === this)
+			&& thing.isValid();
+	}
 
 	Ctor.rankNames = function() {
 		return rankNames.slice();
@@ -48,47 +60,50 @@ var Card = (function(){
 	Ctor.suitNames = function() {
 		return suitNames.slice();
 	}
-	Ctor.numCards = function() {return 52;}
+	Ctor.numCards = function() {
+		return numCards;
+	}
 
+	// Return constructor:
 	return Ctor;
-})();
+})(); //end superclass IIFE
 
 
 // This IIFE will create a subclass (constructor TarotCard) of a superclass (constructor Card)
-var TarotCard = (function(Super){ //<-- Superclass is parameter
+var TarotCard = (function(){
 
 	// Create subclass constructor:
-	function SubCtor(id) {
-		Super.call(this,id); // call superclass ctor first
+	function Ctor(id) {
+		Card.call(this,id); // call superclass ctor first
 		this.upright = true; // then add subclass-specific properties
 	}
-	SubCtor.isCard = Super.isCard; //share one superclass method
+	Ctor.isCard = Card.isCard; //share one superclass method
 
 	// Override some other superclass methods and resources:
 
 	var suitNames = ["Cups","Pentacles","Swords","Wands"];
-	var rankNames = Super.rankNames(); // subclass ranks are derived from super,
+	var rankNames = Card.rankNames(); // subclass ranks are derived from super,
 	rankNames.splice(10,1,"Page","Knight"); // but Jack gets replaced w. Page+Knight
 
-	SubCtor.rankNames = function() {
+	Ctor.rankNames = function() {
 		return rankNames.slice();
 	}
-	SubCtor.suitNames = function() {
+	Ctor.suitNames = function() {
 		return suitNames.slice();
 	}
-	SubCtor.numCards = function() {
+	Ctor.numCards = function() {
 		return 56;
 	}
 
 	// Replace default prototype so that subclass inherits from superclass
-	var proto = (SubCtor.prototype = new Super());
+	var proto = (Ctor.prototype = Object.create(Card.prototype));
 	proto.constructor = Ctor;
 
 	// Override one superclass instance method:
 	proto.color = undefined; //Tarot cards have no color; disable inherited method
 
-	return SubCtor;
-})(Card); //<-- provide superclass as argument to IIFE
+	return Ctor; //== TarotCard
+})(); // end subclass IIFE
 
 
 // ====================
