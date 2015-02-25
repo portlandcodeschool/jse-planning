@@ -1,11 +1,12 @@
 var makeCard = // receive factory with external name `makeCard`
-    (function () { //begin IIFE...
+(function () { //begin IIFE...
 
     // The factory itself:
     function makeCard(id) {  //makeCard is also IIFE's internal name
         if (!isValidID(id))
             return null;
-        var card = {id:id,  //personal property
+        var card = {
+            id:id,  //personal property
             // links to shared methods, defined below:
             rank : rank,
             suit : suit,
@@ -76,31 +77,20 @@ var makeCard = // receive factory with external name `makeCard`
             (rankAbbrs[rankVal]+suitAbbrs[suitVal]);
     };
 
-    //internal use only:
-    var fileName = function(card) {
+    // ---- Problem 4 (Rendering): ----
+
+    var fileName = function(card) { //internal use only
         var rankVal = card.rank(),
             rankName = (rankVal>1 && rankVal<11)?
                 rankAbbrs[rankVal]:
                 rankNames[rankVal].toLowerCase();
             suitName = suitNames[card.suit()].toLowerCase();
+
+        // optional:
+        if (rankVal>10) //for Jacks,Queens,& Kings,
+            suitName+='2';//use alternate (face) image
+
         return rankName+'_of_'+suitName+'.svg';
-    }
-
-
-    // ---- Problem 4: ----
-    var renderText = function(container) {
-        if (typeof container === 'string') {
-            container = document.getElementById(container);
-        }
-        //if (!container) {
-        //    container = document.body;
-        //}
-        if (container instanceof HTMLElement) {
-            var myHtml = '<span class="'+this.color()+'">' +
-                        this.shortName() + '</span>';
-            //console.log(myHtml);
-            container.innerHTML += myHtml;
-        }
     }
 
     var renderImage = function(container) {
@@ -108,14 +98,24 @@ var makeCard = // receive factory with external name `makeCard`
             container = document.getElementById(container);
         }
         if (container instanceof HTMLElement) {
-            var myHtml = '<img class="card-image" src="images/SVG-cards-1.3/' +
-                        fileName(this) + '">';
-            //console.log(myHtml);
+            var myHtml = '<img class="cardImage" src="../images/SVG-cards-1.3/'
+                        + fileName(this) + '">';
             container.innerHTML += myHtml;
         }
-
     }
 
+    var renderText = function(container) {
+        if (typeof container === 'string') {
+            container = document.getElementById(container);
+        }
+        if (container instanceof HTMLElement) {
+            var myHtml = '<span class="'+this.color()+'">'
+                        + this.shortName() + '</span>';
+            container.innerHTML += myHtml;
+        }
+    }
+
+    // Use factory to create full set:
     makeCard.fullSet = [];
     for (var id=0; id<52; ++id) {
         makeCard.fullSet.push(makeCard(id));
@@ -126,60 +126,10 @@ var makeCard = // receive factory with external name `makeCard`
 })(); //end IIFE definition and do it now!
 
 
-this.foo = 'FOO!';
-
 if (typeof module !== "undefined") {
     module.exports = makeCard;
 }
 
-// ====================
-// Testing suite as before...
-// ====================
-
-function assert(claim,message) {
-    if (!claim) console.error(message);
-}
-
-// card instances needed for assertions:
-var card0 = makeCard(0);
-var card3 = makeCard(3);
-var card5 = makeCard(5);
-var card51 = makeCard(51);
-
-
-// Test instance methods:
-assert(card0.rank()===1,  "Test 1 failed");
-assert(card3.rank()===1,  "Test 2 failed");
-assert(card51.rank()===13,"Test 3 failed");
-assert(card0.suit()===1,  "Test 4 failed");
-assert(card5.suit()===2,  "Test 5 failed");
-assert(card51.suit()===4, "Test 6 failed");
-assert(card0.color()==='red',   "Test 10 failed");
-assert(card3.color()==='black', "Test 11 failed");
-assert(card5.name()==='Two of Diamonds', "Test 12 failed");
-assert(card51.name()==='King of Clubs',  "Test 13 failed");
-
-// Test makeCard.isCard:
-assert(makeCard.isCard(card0),  "Test 21 failed")
-assert(makeCard.isCard(card51), "Test 22 failed")
-assert(!makeCard.isCard(0),    "Test 23 failed")
-assert(!makeCard.isCard({}),   "Test 24 failed")
-
-
-// Test card-making results:
-assert(!makeCard(52),"Test 26 failed");
-assert(!makeCard("0"),"Test 27 failed");
-assert(!makeCard(-1),"Test 28 failed");
-assert(!makeCard(false),"Test 30 failed");
-assert(!makeCard(true),"Test 31 failed");
-
-
-// Test that methods are shared:
-assert(card0 !== card3, "Test 50 failed"); //first prove different cards
-assert(card0.rank === card3.rank, "Test 51 failed");
-assert(card0.suit === card3.suit, "Test 52 failed");
-assert(card0.name === card3.name, "Test 53 failed");
-//etc...
 
 
 

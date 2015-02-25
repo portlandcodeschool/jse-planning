@@ -45,3 +45,8 @@ var makeUser = (function() {// begin IIFE...
 })(); //do this IIFE now!
 
 
+if (typeof module !== "undefined") {
+    module.exports = makeUser;
+}
+
+
