@@ -1,18 +1,36 @@
 
 var MemoryGUI = (function () {
 
-	function GUI(len,clickFn,resetGameFn) { //begin ctor
+	function GUI(container,game) { //begin ctor
 
-		this.reset = function() { //reset gui only
-			for (var where=0; where<len; ++where) {
-				resetCell(findCell(where));
-			}
+		var len = game.size();
+
+		if (typeof container === 'string') {
+			container = document.getElementById(container);
 		}
 
-		var hide = function(where) {
+
+		var hideAt = function(where) {
 			var cell = findCell(where);
 			cell.classList.remove('faceup');
 			cell.removeAttribute('value');
+		}
+		var removeAt = function(where) {
+			var cell = findCell(where);
+			cell.classList.add('missing')
+		}
+		var resetAt = function(where) {
+			var cell = findCell(where);
+			cell.classList.remove('faceup');
+			cell.classList.remove('missing');
+		}
+
+
+		// public instance methods:
+		this.reset = function() { //reset all cards (gui only)
+			for (var where=0; where<len; ++where) {
+				resetAt(where);
+			}
 		}
 		this.show = function(where,what) {
 			var cell = findCell(where);
@@ -21,23 +39,19 @@ var MemoryGUI = (function () {
 			// to display the card face
 			cell.classList.add('faceup');
 		}
-		var remove = function(where) {
-			var cell = findCell(where);
-			cell.classList.add('missing')
-		}
 		this.removeSoon = function(locs) {
 			window.setTimeout(function() {
-				locs.forEach(remove);
+				locs.forEach(removeAt);
 			}, 1000);
 		}
 		this.hideSoon = function(locs) {
 			window.setTimeout(function() {
-				locs.forEach(hide);
+				locs.forEach(hideAt);
 			}, 1000);
 		}
 
-		makeGrid(clickFn,len);
-		makeReset(this.reset,resetGameFn);
+		makeGrid(container,len);
+		makeReset(container,this.reset,game.reset);
 	} // end ctor
 
 	function makeID(where) {
@@ -45,10 +59,13 @@ var MemoryGUI = (function () {
 	}
 
 	function findCell(where) {
+		if (where instanceof HTMLElement)
+			return where; //already a DOM element
+		// else find it by id:
 		return document.getElementById(makeID(where));
 	}
 
-	function makeCell(where,isFirstCol,clickFn) {
+	function makeCell(where,isFirstCol) {
 		var cell = document.createElement('div');
 		cell.id = makeID(where);
 		cell.classList.add('memoryCell');
@@ -57,26 +74,22 @@ var MemoryGUI = (function () {
 		// Each scope of makeCell is specific to one cell, so clickFn callback
 		//  always gets corresponding where parameter:
 		cell.addEventListener('click',function(){
-			clickFn(where);
+			game.lift(where);
 		});
 		return cell;
 	}
 
-	function resetCell(cell) {
-		cell.classList.remove('faceup');
-		cell.classList.remove('missing');
-	}
+	
 
-	function makeGrid(clickFn,len,cols) {
+	function makeGrid(container,len,cols) {
 		if (!cols) cols = Math.ceil(Math.sqrt(len));
-		var grid = document.getElementById('memorygame');
 		for (var id=0; id<len; ++id) {
 			var isFirstCol = (id%cols===0);
-			grid.appendChild(makeCell(id,isFirstCol,clickFn));
+			container.appendChild(makeCell(id,isFirstCol));
 		}
 	}
 
-	function makeReset(resetGui,resetGame) {
+	function makeReset(container,resetGui,resetGame) {
 		var btn = document.createElement('button');
 		btn.innerHTML = 'Reset';
 		btn.id = 'resetBtn';
@@ -91,21 +104,4 @@ var MemoryGUI = (function () {
 
 	return GUI;
 })();
-
-/* You can test your gui without a game module:
-   just call the ctor directly with dummy args, like so:
-
-var gui = new MemoryGUI( 16,
-		function(i){console.log('clicking on '+i);},
-		function(){console.log("resetting game")}
-);
-
-Then call its public methods:
-gui.show(1,'test');
-gui.show(2,'test');
-gui.hideSoon([1,2]);
-gui.removeSoon([1,2]);
-//etc
-
-*/
 

@@ -1,8 +1,10 @@
-
-var game,cards; //global only for debugging
+var cards,game,gui; //global vars make debugging easier
 function go() {
-	cards = new MemoryCards(10);
-	game  = new MemoryGame(MemoryGUI,cards);// can add gameover callback if desired
+	// set global vars:
+	cards = new AlphabetCards(8);//<--maybe add argument for some card sets
+	game  = new MemoryGame(cards);
+	gui   = new MemoryGUI('memorygame',game);
+	game.gui(gui); // link game to gui
 }
 
 window.addEventListener("load",go);

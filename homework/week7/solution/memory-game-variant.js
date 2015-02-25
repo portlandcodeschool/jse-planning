@@ -1,16 +1,24 @@
+// Alternative game rules:
+// lift cards until there is a match;
+// then the unmatched ones are removed and the matched ones
+// are flipped facedown again.
+// (Under construction...)
+
 var MemoryGame = (function() {
 
 	function Ctor(cardset) {
 		var slots, //values of shuffled cards;
 				//sparse array: will have elements deleted as cards are removed
 			length,//total slots, including gaps
-			there, //position of face-up card if any, or false
+			status, //array corresponding to slots: true if faceup
+			//there, //position of face-up card if any, or false
 			_gui = null;
 
 		// Helper functions which need access to closure vars;
 		//  some fns will be made public as instance methods:
 		var reset = function() {
 			slots = cardset.values();
+			status = [];
 			length = slots.length;
 			there = false;
 			shuffle(slots);
@@ -35,17 +43,75 @@ var MemoryGame = (function() {
 		}
 		var removeAt = function(where) {
 			delete slots[where];
+			delete status[where];
+		}
+		var firstFaceup = function() {
+			return faceups()[0];
+			//var faceups = Object.keys(status);
+			//if (faceups.length)
+			//	return faceups[0];
 		}
 		var faceupValue = function() {//--> card val
-			return valueAt(there);
+			var first = firstFaceup();
+			if (first !== undefined)
+				return valueAt(first);
 		}
 		var faceupWhere = function() {//--> integer
-			return there;
+			return firstFaceup();
 		}
 		var remaining = function() {//--> array of integers
 			return Object.keys(slots).map(Number);
 		}
+		var faceups = function() {
+			return Object.keys(status).map(Number);
+		}
+		var isFaceup = function(where) {
+			return status[where];
+		}
+		var flip = function(where) {
+			status[where] = true;
+		}
 
+		var unflip = function(exceptArr) {
+			//console.log("")
+			var theres = faceups();
+			theres.forEach(function(there) {
+				if (exceptArr.indexOf(there) === -1) {
+					removeAt(there);
+					if (_gui)
+						_gui.removeSoon([there]);
+				}
+			});
+			status = [];
+			if (_gui)
+				_gui.hideSoon(exceptArr);
+		}
+
+		var lift = function(here) {
+			if (!isValid(here,length)) return false;
+			if (!remainsAt(here)) return false;
+			if (isFaceup(here)) return false;
+
+			var valHere = valueAt(here),
+				displayHere = cardset.display(valHere);
+			var theres = faceups();
+			//var matchAt = [];
+			var matchAt = theres.filter(function(there){
+				return cardset.match(valueAt(there),valHere);
+			});
+			console.log(theres,matchAt);
+			//theres.forEach(function(there) {
+			//	if (cardset.match(here,there))
+			//		matchAt.push(there); 
+			//});
+			flip(here);
+			if (matchAt.length>0)
+				unflip(matchAt.concat([here]));
+			if (_gui)
+				_gui.show(here,displayHere);
+			return displayHere; 
+		}
+/*
 		var lift = function(here) {//--> display string
 			if (!isValid(here,length)) return false;
 			if (!remainsAt(here)) return false;
@@ -78,12 +144,13 @@ var MemoryGame = (function() {
 				_gui.show(here,displayHere);
 			return displayHere; 
 		}
+		*/
 
 		// Make some functions public as instance methods:
 		this.reset = reset;
 		this.lift = lift;
-		this.faceupValue = faceupValue;
-		this.faceupWhere = faceupWhere;
+		//this.faceupValue = faceupValue;
+		//this.faceupWhere = faceupWhere;
 		this.remaining = remaining;
 		this.gui = gui;
 		this.size = size;
