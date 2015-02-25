@@ -22,9 +22,9 @@ You may develop your GUI by any process you like, as long as it has the API (i.e
 ---
 **a)** Modify your MemoryGame constructor by adding two new instance methods:
 
-- size(): A getter function, returning the total number of cards used in the current game.
+- _size()_: A getter function, returning the total number of cards used in the current game.
 
-- gui(useGui): A combined setter and getter function.  If parameter _useGui_ is an object, the game instance remembers that object as its _gui_, and sends it various updates as the game proceeds.  If _useGui_ is undefined, the function acts as a getter, returning whatever object was previously set the as _gui_.
+- _gui(useGui)_: A combined setter and getter function.  If parameter _useGui_ is an object, the game instance remembers that object as its _gui_, and sends it various updates as the game proceeds.  If _useGui_ is undefined, the function acts as a getter, returning whatever object was previously set the as _gui_.
 
 
 ---
@@ -42,7 +42,7 @@ The GUI instance should immediately render the game's starting state, with all c
 Before you implement the rendering updates below, debug your clicking mechanism by providing a ["dummy" game](template/dummy-game.js) which merely reports any `lift()` calls from _gui_.
 
 ---
-**d)**  Each card on the board can be in one of three states: face-down, face-up, and matched (possibly removed or hidden, depending on how you want your interface to look).
+**d)**  Each card on the board can be in one of three states: _face-down_, _face-up_, and _matched_ (possibly removed or hidden, depending on how you want your interface to look).
 For each state, define a CSS class to display a card in that state.  The body of each card can be either the grid cell itself or another element within it.
 
 ---
