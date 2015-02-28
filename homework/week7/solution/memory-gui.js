@@ -6,6 +6,8 @@ var MemoryGUI = (function () {
 
 	// Begin ctor:
 	function GUI(_container,_game) {
+		_game.gui(this); //link _game to this gui:
+
 		// The variables _container, _game, _len, _gui, and _guiID are all
 		//  in the ctor's closure, and are therefore visible to all functions below
 		var _len = _game.size(),
