@@ -3,17 +3,17 @@
 Due Mon. 3/2
 
 
-Reimplement your GUI module using nested Backbone views.  This replacement GUI module will be (initially) interchangeable with the old one; it should work with your existing _game_ and _card_ modules.  Start with [this template](templates/gui-bb1.js).
+Reimplement your Memory GUI module using nested Backbone views.  This week, your replacement GUI module will be interchangeable with the old one; it should work with your existing _game_ and _card_ modules.  Start with [this template](templates/gui-bb1.js).
 
 This GUI should have three classes of view, each a subclass of Backbone.View:
 
 - The _MainView_, attached to the DOM element '#memorygame', will be responsible for rendering all parts of the game (mostly by delegating to its child views).  It should contain a _GridView_ instance and a _Reset_ button (which can have its own view or not, as you choose).
 
-- The _GridView_, attached to a new `_div_` within '#memorygame', will be responsible for rendering all the cards (mostly by delegating to each of them).
+- The _GridView_, attached to a new _div_ within '#memorygame', will be responsible for rendering all the cards (mostly by delegating to each of them).
 
 - Each _CardView_, attached to an _div_ somewhere below #memorygame, will be responsible for rendering and controlling one card.
 
-Your master object _gui_ can be built with an ordinary constructor _MemoryGUI_, as before, but it should contain the _MainView_ instance as a property named _mainview_.  The _mainview_ should contain the _GridView_ instance in a property _gridview_.  And _gridview_ should have an array _cardviews_ holding all of the _CardView_s.  Those links let you delegate action downward.
+Your master object _gui_ can be built with an ordinary constructor _MemoryGUI_, as before, but it should contain the _MainView_ instance as a property named _mainview_.  The _mainview_ should contain the _GridView_ instance in a property _gridview_.  And _gridview_ should have an array _cardviews_ holding all of the _CardView_ instances.  Those links let you delegate action downward.
 
 Your _gui_ instance should have three public methods as before:
 - show(where,what)
