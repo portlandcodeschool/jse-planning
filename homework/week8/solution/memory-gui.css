@@ -1,0 +1,39 @@
+.memorygrid {
+	display:inline-block;
+	margin:20px;
+}
+
+.memorygrid .memorycell {
+	width:60px;
+	height:60px;
+	border-radius:5px;
+	border:1px solid black;
+	background-color:#ddddff;
+	float:left;
+	text-align:center;
+	line-height:60px;
+	font-size:large;
+	margin:5px;
+}
+
+.memorygrid .firstcol {
+	clear:both;
+}
+
+.memorygrid .faceup {
+	background-color:#ffffff;
+}
+
+.memorygrid .faceup:before {
+	content:attr(value); /* shows card face value */
+}
+
+.memorygrid .missing {
+	visibility:hidden;
+}
+
+.resetBtn {
+	clear:both;
+	display:block;
+	margin:0 auto;
+}
