@@ -2,7 +2,7 @@ var makeCard = // receive factory with external name `makeCard`
 (function () { //begin IIFE...
 
     // The factory itself:
-    function makeCard(id) {  //makeCard is also IIFE's internal name
+    function innerMakeCard(id) {  //innerMakeCard is IIFE's internal name
         if (!isValidID(id))
             return null;
         var card = {
@@ -18,7 +18,7 @@ var makeCard = // receive factory with external name `makeCard`
             renderImage : renderImage
         };
         return card;
-    };
+    }
 //------------------
 // Private resources (internal use only)
 //------------------
@@ -40,7 +40,7 @@ var makeCard = // receive factory with external name `makeCard`
 // Methods to be called through factory:
 //-----------------------
 
-    makeCard.isCard = function(card) { // Returns --> true, falsish
+    innerMakeCard.isCard = function(card) { // Returns --> true, falsish
         return card && (typeof card === 'object') // check for null or primitive
             && (card.name === name) // check at least one method
             && ('id' in card) && isValidID(card.id); //check id
@@ -91,7 +91,7 @@ var makeCard = // receive factory with external name `makeCard`
             suitName+='2';//use alternate (face) image
 
         return rankName+'_of_'+suitName+'.svg';
-    }
+    };
 
     var renderImage = function(container) {
         if (typeof container === 'string') {
@@ -102,7 +102,7 @@ var makeCard = // receive factory with external name `makeCard`
                         + fileName(this) + '">';
             container.innerHTML += myHtml;
         }
-    }
+    };
 
     var renderText = function(container) {
         if (typeof container === 'string') {
@@ -113,15 +113,15 @@ var makeCard = // receive factory with external name `makeCard`
                         + this.shortName() + '</span>';
             container.innerHTML += myHtml;
         }
-    }
+    };
 
     // Use factory to create full set:
-    makeCard.fullSet = [];
+    innerMakeCard.fullSet = [];
     for (var id=0; id<52; ++id) {
-        makeCard.fullSet.push(makeCard(id));
+        innerMakeCard.fullSet.push(innerMakeCard(id));
     }
 
-    return makeCard;  //return factory function, product of IIFE's work
+    return innerMakeCard;  //return factory function, product of IIFE's work
 
 })(); //end IIFE definition and do it now!
 
