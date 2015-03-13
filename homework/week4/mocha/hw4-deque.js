@@ -145,4 +145,29 @@ describe('makeDeque', function() {
       assert.deepEqual(testMap, ['THIRD', 'TENTH', 'SIXTH', 'SEVENTH', 'SECOND', 'NINTH', 'FOURTH', 'FIRST', 'EIGTH']);
     });
   });
+  describe('instance.shuffle', function() {
+    it('should be a function', function() {
+      assert.isFunction(testDeck.shuffle);
+    });
+    it('should not add to or remove from deque\'s array', function() {
+      testDeck.shuffle();
+      assert.sameMembers(testDeck.array, ['third', 'tenth', 'sixth', 'seventh', 'second', 'ninth', 'fourth', 'first', 'eigth']);
+    });
+    it('should change the order of the contents of the array', function() {
+      assert.notDeepEqual(testDeck.array, ['third', 'tenth', 'sixth', 'seventh', 'second', 'ninth', 'fourth', 'first', 'eigth']);
+    });
+  });
+  describe('Deque security', function() {
+    it('should allow previously included items to be added back to the deque', function() {
+      testDeck.push('fifth');
+      assert.sameMembers(testDeck.array, ['first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eigth', 'ninth', 'tenth']);
+    });
+    it('should return false when new items are pushed or unshifted', function() {
+      assert.equal(testDeck.push('eleven'), false);
+      assert.equal(testDeck.unshift('eleven'), false);
+    });
+    it('should not modify the deque\'s array when invalid attempts are made', function() {
+      assert.sameMembers(testDeck.array, ['first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eigth', 'ninth', 'tenth']);
+    });
+  });
 });
