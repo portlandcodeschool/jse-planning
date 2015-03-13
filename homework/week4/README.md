@@ -37,7 +37,7 @@ If you need helper functions (e.g. for validating arguments), you may attach the
 
 **b)**  Write another method which is attached to and called through _the factory alone_, not the instances:
 
-* `makeCard.isCard(obj)` should return _true_ if `obj` is a valid card object (a product of the factory) and _false_ otherwise.
+* `makeCard.isCard(obj)` should return _true_ if `obj` is a valid card object (a product of the factory) and a false-y value otherwise.
 
 There's no need for any card instance to have an _isCard_ method (since by calling its method, you've already assumed it's a card).
 
