@@ -1,134 +1,139 @@
 var makeDeque = 
 (function() { //begin IIFE
 
-	function makeDeque(values) { //begin factory
+  function innerMakeDeque(values) { //begin factory
 
-		// These vars are private, local to scope of makeDeque,
-		//  only accessible to functions defined in makeDeque
+    // These vars are private, local to scope of innerMakeDeque,
+    //  only accessible to functions defined in innerMakeDeque
 
-		var array = values.slice(); //copy values
-		var absent = []; //list of missing elements
+    var array = values.slice(); //copy values
+    var absent = []; //list of missing elements
 
-		// Each function below is specific to one deque, with access to the private vars
+    // Each function below is specific to one deque, with access to the private vars
 
-		function readmit(val) { //internal function only, do not attach to instances
-			var foundAt = absent.indexOf(val);
-			if (foundAt<0) return false; //foundAt is -1 if val not found
-			// else found; excise from absent array
-			absent.splice(foundAt,1);
-			return true;
-		}
+    function readmit(val) { //internal function only, do not attach to instances
+      var foundAt = absent.indexOf(val);
+      if (foundAt<0) return false; //foundAt is -1 if val not found
+      // else found; excise from absent array
+      absent.splice(foundAt,1);
+      return true;
+    }
 
-		// ---- Instance methods: -----
+    // ---- Instance methods: -----
 
-		function top() {
-			if (array.length)
-				return array[array.length-1];
-		}
+    function top() {
+      if (array.length)
+        return array[array.length-1];
+    }
 
-		function bottom() {
-			if (array.length)
-				return array[0];
-		}
+    function arrLength() {
+      return array.length;
+    }
 
-		function pop() {
-			var val = array.pop();
-			if (val !== undefined)
-				absent.push(val);
-			return val;
-		}
+    function bottom() {
+      if (array.length)
+        return array[0];
+    }
 
-		function push(val) {
-			return readmit(val) && array.push(val);
-		}
+    function pop() {
+      var val = array.pop();
+      if (val !== undefined)
+        absent.push(val);
+      return val;
+    }
 
-		function shift() {
-			var val = array.shift();
-			if (val !== undefined)
-				absent.push(val);
-			return val;
-		}
+    function push(val) {
+      return readmit(val) && array.push(val);
+    }
 
-		function unshift(val) {
-			return readmit(val) && array.unshift(val);
-		}
+    function shift() {
+      var val = array.shift();
+      if (val !== undefined)
+        absent.push(val);
+      return val;
+    }
 
-		function sort(sortFn) {
-			//don't return:
-			array.sort(sortFn);
-		}
+    function unshift(val) {
+      return readmit(val) && array.unshift(val);
+    }
 
-		function map(convertFn) {
-			// This solution works but can be exploited
-			// (certain callbacks could change the array):
-			// return array.map(convertFn);
+    function sort(sortFn) {
+      //don't return:
+      array.sort(sortFn);
+    }
 
-			// Safer version: map a copy of array:
-			return array.slice().map(convertFn);
-		}
+    function map(convertFn) {
+      // This solution works but can be exploited
+      // (certain callbacks could change the array):
+      // return array.map(convertFn);
 
-		function cut() { //returns # elements moved from upper half to lower (0 if no change)
-			var fullLength = array.length;
-			var headLength = Math.ceil(fullLength / 2);
-			if (headLength == fullLength) // no tail, nothing to swap
-				return 0;
-			var tail = array.splice(headLength, fullLength); // removes tail from array
-			array = tail.concat(array); // swap tail and remaining head
-			return tail.length; 
-		}
+      // Safer version: map a copy of array:
+      return array.slice().map(convertFn);
+    }
 
-		function shuffle() {
-		// Knuth-Fisher-Yates, modified from http://bost.ocks.org/mike/shuffle/
-			var end = array.length, temp, i;
-	  			// While there remain elements to shuffle…
-			while (end>1) {
-	   			// Pick a remaining element…
-	   			i = Math.floor(Math.random() * end--);
-	   			// And swap it with the current element.
-	   			temp = array[end];
-	   			array[end] = array[i];
-			    array[i] = temp;
-	 		}
-	 	}
+    function cut() { //returns # elements moved from upper half to lower (0 if no change)
+      var fullLength = array.length;
+      var headLength = Math.ceil(fullLength / 2);
+      if (headLength == fullLength) // no tail, nothing to swap
+        return 0;
+      var tail = array.splice(headLength, fullLength); // removes tail from array
+      array = tail.concat(array); // swap tail and remaining head
+      return tail.length; 
+    }
 
-	 	// Problem 4:
-	 	function render(container,renderItemFn) {
-	 		if (typeof container === 'string') {
-	 			container = document.getElementById(container);
-	 		}
-	 		if (!(container instanceof HTMLElement)) {
-	 			console.log('no such element');
-	 			return;
-	 		}
-	 		for (var i=0; i<array.length; ++i) {
-	 			var cell = document.createElement('div');
-	 			cell.className = 'dequeItem';
-	 			renderItemFn(array[i], cell);
-	 			container.appendChild(cell);
-	 		}
-	 	}
+    function shuffle() {
+      // Knuth-Fisher-Yates, modified from http://bost.ocks.org/mike/shuffle/
+      var end = array.length, temp, i;
+      // While there remain elements to shuffle…
+      while (end>1) {
+        // Pick a remaining element…
+        i = Math.floor(Math.random() * end--);
+        // And swap it with the current element.
+        temp = array[end];
+        array[end] = array[i];
+        array[i] = temp;
+      }
+    }
 
-		var deque = {// export each public method by linking an instance property to it:
-				sort : sort,
-				map : map,
-				cut : cut,
-				shuffle : shuffle,
-				top : top,
-				bottom : bottom,
-				push : push,
-				pop : pop,
-				shift : shift,
-				unshift : unshift,
+    // Problem 4:
+    function render(container,renderItemFn) {
+      if (typeof container === 'string') {
+        container = document.getElementById(container);
+      }
+      if (!(container instanceof HTMLElement)) {
+        console.log('no such element');
+        return;
+      }
+      for (var i=0; i<array.length; ++i) {
+        var cell = document.createElement('div');
+        cell.className = 'dequeItem';
+        renderItemFn(array[i], cell);
+        container.appendChild(cell);
+      }
+    }
 
-				render : render
-		};
-		return deque;
+    var deque = {// export each public method by linking an instance property to it:
+      sort : sort,
+      map : map,
+      cut : cut,
+      shuffle : shuffle,
+      top : top,
+      bottom : bottom,
+      push : push,
+      pop : pop,
+      shift : shift,
+      unshift : unshift,
+      length: arrLength,
 
-	} //end factory makeDeque
+      render : render
+    };
+    return deque;
 
-	return makeDeque;
+  } //end factory innerMakeDeque
+
+  return innerMakeDeque;
 })(); //end IIFE
 
 if (typeof module !== "undefined") {
-    module.exports = makeDeque;
+  module.exports = makeDeque;
 }
